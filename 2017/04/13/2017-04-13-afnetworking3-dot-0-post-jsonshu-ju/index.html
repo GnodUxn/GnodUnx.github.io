@@ -168,7 +168,7 @@
                 20
                 <span>tags</span>
             </div>
-        </div>
+	</div>
         
         <div class="profile-block social-links">
             <table>
@@ -269,6 +269,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">NSData *postData = [parameters dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];</div><div class="line">AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];</div><div class="line">NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@&quot;POST&quot; URLString:@&quot;url&quot; parameters:nil error:nil];</div><div class="line">request.timeoutInterval= [[[NSUserDefaults standardUserDefaults] valueForKey:@&quot;timeoutInterval&quot;] longValue];</div><div class="line">[request setValue:@&quot;application/json&quot; forHTTPHeaderField:@&quot;Content-Type&quot;];</div><div class="line">[request setValue:@&quot;application/json&quot; forHTTPHeaderField:@&quot;Accept&quot;];</div><div class="line">[request setHTTPBody:postData];</div><div class="line"></div><div class="line">[[manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) &#123;</div><div class="line">  if (!error) &#123;</div><div class="line">  NSLog(@&quot;responseObject: %@&quot;, responseObject);</div><div class="line">  &#125; else &#123;</div><div class="line">  NSLog(@&quot;error: %@, %@, %@&quot;, error, response, responseObject);</div><div class="line">  &#125;</div><div class="line"> &#125;] resume];</div></pre></td></tr></table></figure>
 <p>至此这个问题算是解决了，也可以正常拿到后台返回的数据。</p>
 
+	原文链接：<a href=" /2017/04/13/2017-04-13-afnetworking3-dot-0-post-jsonshu-ju/ ">  http://wanxudong.top//2017/04/13/2017-04-13-afnetworking3-dot-0-post-jsonshu-ju/ </a> 转载请注明出处！
         
         </div>
         
@@ -348,6 +349,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 
     
     
+
 
 
 </section>
