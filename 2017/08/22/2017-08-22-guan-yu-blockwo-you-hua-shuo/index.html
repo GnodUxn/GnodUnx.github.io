@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Block那点事儿 | GnodUxn&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Block那些事儿">
+<meta name="keywords" content="Block">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Block那点事儿">
+<meta property="og:url" content="http://yoursite.com/child/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/index.html">
+<meta property="og:site_name" content="GnodUxn&#39;s Blog">
+<meta property="og:description" content="Block那些事儿">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/block-struct.jpg">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/53BB036C-D6E3-4123-B334-91F2143C3256%202.png">
+<meta property="og:updated_time" content="2017-09-23T08:29:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Block那点事儿">
+<meta name="twitter:description" content="Block那些事儿">
+<meta name="twitter:image" content="http://oo6qj81tq.bkt.clouddn.com/block-struct.jpg">
+    
+
+    
+
+    
+        <link rel="icon" href="/css/images/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">GnodUxn&#39;s Blog</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cari" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'pos',
+            PAGES: 'Pages',
+            CATEGORIES: 'kategori',
+            TAGS: 'tag',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cari" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">GnodUxn</h2>
+            <h3 id="title">iOS Developer &amp; Designer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>beijing, China</span>
+            <a id="follow" target="_blank" href="https://github.com/GnodUxn/">IKUTI</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                14
+                <span>pos</span>
+            </div>
+            <div class="article-info-block">
+                20
+                <span>tag</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://twitter.com/GnodUxn" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="http://weibo.com/2739051123" target="_blank" title="weibo" class=tooltip>
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="mailto:wxd.engineer@gmail.com" target="_blank" title="at" class=tooltip>
+                            <i class="fa fa-at"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/atom.xml" target="_blank" title="rrs" class=tooltip>
+                            <i class="fa fa-rrs"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-2017-08-22-guan-yu-blockwo-you-hua-shuo" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Block那点事儿
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/">
+            <time datetime="2017-08-22T09:34:59.000Z" itemprop="datePublished">2017-08-22</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/iOS/">iOS</a>
+    </div>
+
+                        
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>关于Block相信每一个iOS开发者都不会陌生，不管是偏爱哪种传值方式（Block还是delegate），都或多或少都接触过Block。以下我将参考网上各路大神的分析并结合自己的实践对Block进行一次详尽分析。若有不足之处，欢迎联系指正。<a id="more"></a></p>
+<p>写本篇文章的初衷是一次面试中被问及“Block的原理”，平日里项目中经常使用Block，关于Block的种类以及注意事项也烂熟于心。被问及这个问题时第一时间想到的是当初用<code>clang</code>编译的C源码（一些复杂的C方法名和变量），苦于记忆模糊和表达能力有限以致于不知该怎么表达这个原理性的问题。回来后痛定思痛，决不能抱着对知识一知半解的态度去学习，因此决定系统化的梳理一遍Block的知识点。</p>
+<p>###定义</p>
+<blockquote>
+<p>####什么是Block</p>
+</blockquote>
+<p>在《Objective-C和OS X高级编程》这本书中，作者是这么定义的：</p>
+<p><strong>Block是C语言的扩充功能。可以用一句话来表示Block的扩充功能：带有自动变量（局部变量）的匿名函数。顾名思义，所谓匿名函数就是不带有名称的函数。</strong></p>
+<p>唐巧大神在 <a href="http://blog.devtang.com/2013/07/28/a-look-inside-blocks/" target="_blank" rel="external">谈Objective-C block的实现</a> 中则是引用了 wikipedia 上对闭包的定义：</p>
+<table>
+<thead>
+<tr>
+<th>Closure (computer programming)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>In programming languages, a closure is a function or reference to a function together with a referencing environment—a table storing a reference to each of the non-local variables (also called free variablesor upvalues) of that function.</td>
+</tr>
+</tbody>
+</table>
+<p><br>“ <strong>翻译过来，闭包是一个函数（或指向函数的指针），再加上该函数执行的外部的上下文变量（有时候也称作自由变量）。</strong></p>
+<p><strong>block 实际上就是 Objective-C 语言对于闭包的实现。</strong>”</p>
+<blockquote>
+<p>####block的内部结构</p>
+</blockquote>
+<p>block 的内存布局如下图</p>
+<p><img src="http://oo6qj81tq.bkt.clouddn.com/block-struct.jpg" alt="block-struct"></p>
+<p>“ <strong>每个Objective-C对象都占据着某个内存区域。因为实例变量的个数及对象所包含的关联数据互不相同，所以每个对象所占据的内存区域也有大有小。Block本身也是对象，在存放block的内存区域中，首个变量是指向Class对象的指针，该指针叫做 isa 。其余内存里含有 Block 对象正常运转所需的各种信息。</strong>”                   — 摘自《Effective Objective-C 2.0》</p>
+<p>下面介绍该数据结构中的变量：</p>
+<ul>
+<li>isa 指针：所有对象都有该指针，用于实现对象相关的功能。</li>
+<li>flags：表示一些 block 的附加信息。</li>
+<li>reserved：保留变量。</li>
+<li>invoke：函数指针，指向block的实现代码。</li>
+<li>descriptor： 指向结构体的指针，每个block里都包含此结构体，其中声明了block对象的总体大小，还声明了copy与dispose这两个辅助函数所对应的函数指针。比如，copy保留捕获的对象，dispose则将之释放。</li>
+<li>variables：捕获的变量，捕获多少个变量，就要占据多少内存空间。</li>
+</ul>
+<p>###源码分析</p>
+<blockquote>
+<p>####初识block</p>
+</blockquote>
+<p>工具：clang</p>
+<p>首先新建打开工程，在main.m文件中写如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    @autoreleasepool &#123;</div><div class="line">        int a = 10;</div><div class="line">        void (^blk)(void) = ^&#123; printf(&quot;Hello word! a = %d\n&quot;,a); &#125;;</div><div class="line">        blk();</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>打开终端，cd到main.m文件所在目录，在终端输入：<code>clang -rewrite-objc main.m</code>，即可在目录中看到 clang 输出了一个名为 main.cpp 的文件。该文件就是 block 的 C 语言实现。</p>
+<p>打开该文件就会看到上百行的代码，其实有用的信息只有三十几行代码。下面我将关键代码贴过来：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">struct __block_impl &#123;</div><div class="line">    void *isa;</div><div class="line">    int Flags;</div><div class="line">    int Reserved;</div><div class="line">    void *FuncPtr;</div><div class="line">&#125;;</div><div class="line">struct __main_block_impl_0 &#123;</div><div class="line">  struct __block_impl impl;</div><div class="line">  struct __main_block_desc_0* Desc;</div><div class="line">  int a;</div><div class="line">  __main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, int _a, int flags=0) : a(_a) &#123;</div><div class="line">    impl.isa = &amp;_NSConcreteStackBlock;</div><div class="line">    impl.Flags = flags;</div><div class="line">    impl.FuncPtr = fp;</div><div class="line">    Desc = desc;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">static void __main_block_func_0(struct __main_block_impl_0 *__cself) &#123;</div><div class="line">  int a = __cself-&gt;a; // bound by copy</div><div class="line"> printf(&quot;Hello word! a = %d\n&quot;,a); &#125;</div><div class="line"></div><div class="line">static struct __main_block_desc_0 &#123;</div><div class="line">  size_t reserved;</div><div class="line">  size_t Block_size;</div><div class="line">&#125; __main_block_desc_0_DATA = &#123; 0, sizeof(struct __main_block_impl_0)&#125;;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    /* @autoreleasepool */ &#123; __AtAutoreleasePool __autoreleasepool; </div><div class="line">        int a = 10;</div><div class="line">        void (*blk)(void) = ((void (*)())&amp;__main_block_impl_0((void *)__main_block_func_0, &amp;__main_block_desc_0_DATA, a));</div><div class="line">        ((void (*)(__block_impl *))((__block_impl *)blk)-&gt;FuncPtr)((__block_impl *)blk);</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>首先来看<code>__main_block_impl_0</code>结构体，由于其构造函数也一并写入结构体中，稍显复杂。除去其构造函数将变得十分简单。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">struct __main_block_impl_0 &#123;</div><div class="line">  struct __block_impl impl;</div><div class="line">  struct __main_block_desc_0* Desc;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>第一个成员变量是<code>__block_impl</code>，先看一下其结构体的声明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">struct __block_impl &#123;</div><div class="line">  void *isa;</div><div class="line">  int Flags;</div><div class="line">  int Reserved;</div><div class="line">  void *FuncPtr;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>从其变量名称可以联想到某些标志、今后版本升级所需的区域以及指针函数。</p>
+<p>第二个成员变量是<code>Desc</code>指针，其结构体声明如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">static struct __main_block_desc_0 &#123;</div><div class="line">  size_t reserved;</div><div class="line">  size_t Block_size;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从变量名可知，其结构为今后版本升级所需的区域和Block的大小。</p>
+<p>下面我们来看<code>__main_block_impl_0</code>结构体的构造函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">__main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, int flags=0) &#123;</div><div class="line">    impl.isa = &amp;_NSConcreteStackBlock;</div><div class="line">    impl.Flags = flags;</div><div class="line">    impl.FuncPtr = fp;</div><div class="line">    Desc = desc;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从 <code>impl.isa = &amp;_NSConcreteStackBlock</code> 可知，block的实质就是Objective-C对象，关于该类的信息在<code>_NSConcreteStackBlock</code>中。</p>
+<p>其中 fp 为指向 <code>__main_block_func_0</code>函数的指针。</p>
+<p><code>Tips:</code>  isa 指向一个类对象，该实例持有声明的成员变量、方法的名字、方法的实现（即函数指针）、属性以及父类的指针，并被Objective-C运行时库所使用。</p>
+<p>接下来来看对上面构造函数的调用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">void (*blk)(void) = ((void (*)())&amp;__main_block_impl_0((void *)__main_block_func_0, &amp;__main_block_desc_0_DATA));</div><div class="line">        ((void (*)(__block_impl *))((__block_impl *)blk)-&gt;FuncPtr)((__block_impl *)blk);</div></pre></td></tr></table></figure>
+<p>WTF !!! 这是什么鬼？还好有业界的各位巨人，以至于我可以站在巨人的肩膀上。《Objective-C和OS X高级编程》这本书中对block有详细的讲解，有兴趣的可以去看，这里不再赘述。我们将转换去掉就变成了下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">struct __main_block_impl_0 temp = __main_block_impl_0(__main_block_func_0, &amp;__main_block_desc_0_DATA);</div><div class="line">struct __main_block_impl_0 *blk = &amp;temp;</div></pre></td></tr></table></figure>
+<p>将 <code>__main_block_impl_0</code> 结构体类型的自动变量，栈上生成的 <code>__main_block_impl_0</code> 结构体实例的指针，赋值给 <code>__main_block_impl_0</code> 结构体指针类型的变量blk。</p>
+<p>下面看 <code>main_block_impl_0</code> 结构体实例的构造参数。第一个参数是C语言函数指针，第二个参数作为静态全局变量初始化的<code>__main_block_desc_0</code>结构体实例指针。<code>__main_block_impl_0(__main_block_func_0, &amp;__main_block_desc_0_DATA)</code>返回函数指针，而使用<code>__main_block_impl_0(__main_block_func_0, &amp;__main_block_desc_0_DATA) ();</code> 就是简单的使用函数指针调用函数。由block语法转换的<code>__main_block_func_0</code>函数的指针被赋值成员变量FuncPtr中。另外，<code>__main_block_func_0</code>函数的参数<code>__cself</code>指向block的值。在调用该函数的源代码中可以看到block正是作为参数进行了传递。</p>
+<blockquote>
+<h4 id="block的分类-MRC下"><a href="#block的分类-MRC下" class="headerlink" title="block的分类(MRC下)"></a>block的分类(MRC下)</h4></blockquote>
+<p>由前文可知，block的实质是Objective-C对象。上文的block类型为 <code>_NSConcreteStackBlock</code> ，其实block共有三种类型：</p>
+<ul>
+<li>_NSConcreteStackBlock : 该block设置在栈上。</li>
+<li>_NSConcreteGlobalBlock : 与全局变量一样，该block设置在数据区（.data区）。</li>
+<li>_NSConcreteMallocBlock : 该类设置在由malloc函数分配的内存块（堆）上。</li>
+</ul>
+<p>内存分布图如下：</p>
+<p><img src="http://oo6qj81tq.bkt.clouddn.com/53BB036C-D6E3-4123-B334-91F2143C3256%202.png" alt="MemoryLayout"></p>
+<ol>
+<li><p>上文的block为 <code>_NSConcreteStackBlock</code> ，这种block需捕获状态（如变量等），运行时也有状态参与进来。</p>
+</li>
+<li><p><code>_NSConcreteGlobalBlock</code> 当不需捕获变量也无状态参与的时候在数据区存储。如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">void (^block)() = ^(void)&#123;</div><div class="line">    printf(&quot;Global Block\n&quot;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    @autoreleasepool &#123;</div><div class="line">        block();</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其 <code>isa</code> 指针指向 <code>_NSConcreteGlobalBlock</code> 。</p>
+</li>
+<li><p><code>_NSConcreteMallocBlock</code> ，如下面代码所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">typedef int(^blk_t)(int);</div><div class="line">blk_t func(int rate)&#123;</div><div class="line">    return [^(int count)&#123;return rate * count;&#125; copy];</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    @autoreleasepool &#123;</div><div class="line">        blk_t mallocBlk = func(2);</div><div class="line">        NSLog(@&quot;%@&quot;,mallocBlk);</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在MRC下 <code>return ^(int count){return rate * count;};</code> 会报错：<code>Returning block that on the local stack</code> 说明返回的是配置在栈上的Block。即程序执行中从该函数返回函数调用方法时变量作用域结束，因此栈上的Block也被废弃。所以在MRC下编译需改为 <code>return [^(int count){return rate * count;} copy];</code>。    </p>
+<p>源码中可以看到：<code>impl.isa = &amp;_NSConcreteStackBlock;</code> 依旧指向栈上，但其打印出的Block类型为 <code>__NSMallocBlock__</code> ，这里一度让我疑惑不已。直到看到Clang官方文档的一句话： <strong>“ The initial allocation is done on the stack， but the runtime provides a Block_copy  function ” </strong>。那么 <strong>Block_copy</strong> 函数做了什么？它负责将栈上的Block复制到堆上，但这一切都是在运行时执行的。</p>
+<p>那么什么时候栈上的Block会被复制到堆上呢？</p>
+<ul>
+<li>调用Block的copy方法时。</li>
+<li>Block作为函数返回值返回时。</li>
+<li>将Block赋值给带有 __strong 修饰符 id 类型的类或Block类型成员变量时。</li>
+<li>在方法名中含有 usingBlock 的 Cocoa 框架方法或 GCD 的 API 中传递 Block 时。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<h4 id="block的使用"><a href="#block的使用" class="headerlink" title="__block的使用"></a>__block的使用</h4></blockquote>
+<p>当使用__block修饰变量的时候，编译器会成一个新的结构体，如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">struct __Block_byref_a_0 &#123;</div><div class="line">  void *__isa;</div><div class="line">__Block_byref_a_0 *__forwarding;</div><div class="line"> int __flags;</div><div class="line"> int __size;</div><div class="line"> int a;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>其中 <code>__forwarding</code>指针是指向自己的指针。当栈上的Block被复制到堆上时，会将成员变量 <code>__forwarding</code> 的值替换成复制目标堆上的 <code>__block</code> 变量用结构体实例的地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">struct __main_block_impl_0 &#123;</div><div class="line">  struct __block_impl impl;</div><div class="line">  struct __main_block_desc_0* Desc;</div><div class="line">  __Block_byref_a_0 *a; // by ref</div><div class="line">  __main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, __Block_byref_a_0 *_a, int flags=0) : a(_a-&gt;__forwarding) &#123;</div><div class="line">    impl.isa = &amp;_NSConcreteStackBlock;</div><div class="line">    impl.Flags = flags;</div><div class="line">    impl.FuncPtr = fp;</div><div class="line">    Desc = desc;</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><code>__block</code>之所以能改变变量的值，不仅仅是因为 <code>__main_block_impl_0</code> 结构体实例中传入的成员变量是变量的地址，而是编译器通过生成指向 <code>__Block_byref_a_0</code> 结构体的 <code>__forwarding</code> 指针，保证无论通过 <code>__block</code> 修饰变量配置在栈上还是堆上，都能保证正确访问。</p>
+<blockquote>
+<h4 id="ARC对Blcok的影响"><a href="#ARC对Blcok的影响" class="headerlink" title="ARC对Blcok的影响"></a>ARC对Blcok的影响</h4></blockquote>
+<p>ARC开启的情况下不需要手动将Block从栈复制到堆。而且只会产生<code>NSConcreteGlobalBlock</code> 和 <code>NSConcreteMallocBlock</code> 类型的 Block。例如文章开始的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    @autoreleasepool &#123;</div><div class="line">        int a = 10;</div><div class="line">        void (^blk)(void) = ^&#123; printf(&quot;Hello word! a = %d\n&quot;,a); &#125;;</div><div class="line">        blk();</div><div class="line">        NSLog(@&quot;%@&quot;,blk);</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在ARC环境下控制台打印结果为：<code>__NSMallocBlock__</code>类型的Block。所以在ARC环境下，当Block不需捕获变量也无状态参与的时候生成 <code>__NSGlobalBlock__</code>类型的Block，<code>_NSConcreteStackBlock</code> 类型的Block会在运行时编译器的优化下变成 <code>__NSMallocBlock__</code>类型的Block。</p>
+<p>###结论</p>
+<p>有关Block的问题暂时先写这么多，之后有了新的理解会随时补充。</p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="http://clang.llvm.org/docs/Block-ABI-Apple.html" target="_blank" rel="external">Block Implementation Specification</a></li>
+<li><a href="http://llvm.org/svn/llvm-project/compiler-rt/trunk/lib/BlocksRuntime/" target="_blank" rel="external">BlocksRuntime</a></li>
+<li><a href="http://blog.devtang.com/2013/07/28/a-look-inside-blocks/" target="_blank" rel="external">谈Objective-C block的实现</a></li>
+<li><a href="http://www.cocoachina.com/ios/20161025/17198.html" target="_blank" rel="external">Block内存管理实例分析</a></li>
+<li>《Objective-C和OS X高级编程》</li>
+</ul>
+
+        
+        </div>
+        
+           <footer class="article-footer">
+                 <div class="share-container">
+
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+</div>
+
+                 
+    
+
+             </footer>
+        
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Lebih baru</strong>
+            <div class="article-nav-title">
+                
+                    KVO实现原理
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Lebih Tua</strong>
+            <div class="article-nav-title">轻量级视图控制器</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">terbaru</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/iOS/">iOS</a></p>
+                            <p class="item-title"><a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/" class="title">KVO实现原理</a></p>
+                            <p class="item-date"><time datetime="2017-09-15T02:32:55.000Z" itemprop="datePublished">2017-09-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/iOS/">iOS</a></p>
+                            <p class="item-title"><a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" class="title">Block那点事儿</a></p>
+                            <p class="item-date"><time datetime="2017-08-22T09:34:59.000Z" itemprop="datePublished">2017-08-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/翻译/">翻译</a></p>
+                            <p class="item-title"><a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" class="title">轻量级视图控制器</a></p>
+                            <p class="item-date"><time datetime="2017-06-08T08:06:43.000Z" itemprop="datePublished">2017-06-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Servers/">Servers</a></p>
+                            <p class="item-title"><a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" class="title">Linux下配置Tomcat服务器</a></p>
+                            <p class="item-date"><time datetime="2017-06-07T03:41:35.000Z" itemprop="datePublished">2017-06-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/13/2017-04-13-macxia-li-yong-ban-wa-gong-vpsshi-xian-ke-xue-shang-wang/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/network/">network</a></p>
+                            <p class="item-title"><a href="/2017/04/13/2017-04-13-macxia-li-yong-ban-wa-gong-vpsshi-xian-ke-xue-shang-wang/" class="title">Mac下利用搬瓦工VPS实现科学上网</a></p>
+                            <p class="item-date"><time datetime="2017-04-13T09:56:34.000Z" itemprop="datePublished">2017-04-13</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">kategori</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Servers/">Servers</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/network/">network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">arsip</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clone-Your-Octopress-to-Blog-From-Two-Places/">Clone Your Octopress to Blog From Two Places</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-Page/">GitHub Page</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/">H5</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSON/">JSON</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Octopress/">Octopress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cocoapods/">cocoapods</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS与H5交互/">iOS与H5交互</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/octopress/">octopress</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人博客/">个人博客</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个性化配置/">个性化配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/交互/">交互</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/同步/">同步</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/服务器/">服务器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/遇到的坑/">遇到的坑</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">awan tag</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Clone-Your-Octopress-to-Blog-From-Two-Places/" style="font-size: 10px;">Clone Your Octopress to Blog From Two Places</a> <a href="/tags/GitHub-Page/" style="font-size: 10px;">GitHub Page</a> <a href="/tags/H5/" style="font-size: 15px;">H5</a> <a href="/tags/JSON/" style="font-size: 10px;">JSON</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/Octopress/" style="font-size: 10px;">Octopress</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/cocoapods/" style="font-size: 10px;">cocoapods</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iOS与H5交互/" style="font-size: 15px;">iOS与H5交互</a> <a href="/tags/octopress/" style="font-size: 15px;">octopress</a> <a href="/tags/个人博客/" style="font-size: 10px;">个人博客</a> <a href="/tags/个性化配置/" style="font-size: 10px;">个性化配置</a> <a href="/tags/交互/" style="font-size: 15px;">交互</a> <a href="/tags/同步/" style="font-size: 10px;">同步</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/遇到的坑/" style="font-size: 10px;">遇到的坑</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tautan</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2017 GnodUxn<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

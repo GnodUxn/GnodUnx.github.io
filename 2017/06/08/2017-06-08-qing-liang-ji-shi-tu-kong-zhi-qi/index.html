@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>轻量级视图控制器 | GnodUxn&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="轻量级视图控制器">
+<meta name="keywords" content="轻量, 视图控制器, View Controllers, Lighter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="轻量级视图控制器">
+<meta property="og:url" content="http://yoursite.com/child/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/index.html">
+<meta property="og:site_name" content="GnodUxn&#39;s Blog">
+<meta property="og:description" content="轻量级视图控制器">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.objc.io/images/issue-1/photocell-655ccb15.png">
+<meta property="og:updated_time" content="2017-09-23T08:29:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="轻量级视图控制器">
+<meta name="twitter:description" content="轻量级视图控制器">
+<meta name="twitter:image" content="https://www.objc.io/images/issue-1/photocell-655ccb15.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/css/images/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">GnodUxn&#39;s Blog</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cari" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'pos',
+            PAGES: 'Pages',
+            CATEGORIES: 'kategori',
+            TAGS: 'tag',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cari" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">GnodUxn</h2>
+            <h3 id="title">iOS Developer &amp; Designer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>beijing, China</span>
+            <a id="follow" target="_blank" href="https://github.com/GnodUxn/">IKUTI</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                14
+                <span>pos</span>
+            </div>
+            <div class="article-info-block">
+                20
+                <span>tag</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://twitter.com/GnodUxn" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="http://weibo.com/2739051123" target="_blank" title="weibo" class=tooltip>
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="mailto:wxd.engineer@gmail.com" target="_blank" title="at" class=tooltip>
+                            <i class="fa fa-at"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/atom.xml" target="_blank" title="rrs" class=tooltip>
+                            <i class="fa fa-rrs"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            轻量级视图控制器
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/">
+            <time datetime="2017-06-08T08:06:43.000Z" itemprop="datePublished">2017-06-08</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/翻译/">翻译</a>
+    </div>
+
+                        
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><strong>本文翻译自：<a href="https://www.objc.io/issues/1-view-controllers/lighter-view-controllers/" target="_blank" rel="external">Lighter View Controllers </a></strong></p>
+<p>在iOS项目中视图控制器通常是最大的文件，它们通常包含许多非必要的代码。视图控制器几乎总是代码里最少被复用的部分。接下来我们将使用技巧使视图控制器瘦身、复用代码、并把代码放到适当的地方。</p>
+<p>此问题的<a href="https://github.com/objcio/issue-1-lighter-view-controllers" target="_blank" rel="external">示例代码</a>在GitHub上。<a id="more"></a></p>
+<p>###将数据源和其他协议分开</p>
+<p>为控制器瘦身最强有力技巧之一是将<code>UITableViewDataSource</code>部分的代码移动到它自己的类中。如果你不止一次这样做过了，你将会发现一种特有的模式并提取出可复用的代码。</p>
+<p>举个例子，在我们的示例程序中，有一个名为<code>PhotosViewController</code>的类包含以下方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"># pragma mark Pragma </div><div class="line"></div><div class="line">- (Photo*)photoAtIndexPath:(NSIndexPath*)indexPath &#123;</div><div class="line">    return photos[(NSUInteger)indexPath.row];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (NSInteger)tableView:(UITableView*)tableView </div><div class="line"> numberOfRowsInSection:(NSInteger)section &#123;</div><div class="line">    return photos.count;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (UITableViewCell*)tableView:(UITableView*)tableView </div><div class="line">        cellForRowAtIndexPath:(NSIndexPath*)indexPath &#123;</div><div class="line">    PhotoCell* cell = [tableView dequeueReusableCellWithIdentifier:PhotoCellIdentifier </div><div class="line">                                                      forIndexPath:indexPath];</div><div class="line">    Photo* photo = [self photoAtIndexPath:indexPath];</div><div class="line">    cell.label.text = photo.name;</div><div class="line">    return cell;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这些代码中多次用到了数组，其中一些特定用于视图控制器管理的照片。所以，我们试着将与数组相关的代码移动到它自己的类中。我们使用 block 来为 cell 设置数据，也可以使用代理，依据你自己的使用习惯。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">@implementation ArrayDataSource</div><div class="line"></div><div class="line">- (id)itemAtIndexPath:(NSIndexPath*)indexPath &#123;</div><div class="line">    return items[(NSUInteger)indexPath.row];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (NSInteger)tableView:(UITableView*)tableView </div><div class="line"> numberOfRowsInSection:(NSInteger)section &#123;</div><div class="line">    return items.count;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (UITableViewCell*)tableView:(UITableView*)tableView </div><div class="line">        cellForRowAtIndexPath:(NSIndexPath*)indexPath &#123;</div><div class="line">    id cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier</div><div class="line">                                              forIndexPath:indexPath];</div><div class="line">    id item = [self itemAtIndexPath:indexPath];</div><div class="line">    configureCellBlock(cell,item);</div><div class="line">    return cell;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>这三个方法可以在视图控制器中去掉，取而代之的是你可以为这个对象创建一个实例并设置其为table view的数据源。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">void (^configureCell)(PhotoCell*, Photo*) = ^(PhotoCell* cell, Photo* photo) &#123;</div><div class="line">   cell.label.text = photo.name;</div><div class="line">&#125;;</div><div class="line">photosArrayDataSource = [[ArrayDataSource alloc] initWithItems:photos</div><div class="line">                                                cellIdentifier:PhotoCellIdentifier</div><div class="line">                                            configureCellBlock:configureCell];</div><div class="line">self.tableView.dataSource = photosArrayDataSource;</div></pre></td></tr></table></figure>
+<p>现在你不必担心在数组中寻找一个位置的索引，而且每当你想要将数组显示到table view上时就可以复用此代码。<br>你还可以实现其他方法，例如：<code>tableView:commitEditingStyle:forRowAtIndexPath:</code>，并在table view controllers中共享这些代码。</p>
+<p>最方便的是我们可以分开测试这个类，而且不用担心重写这些代码。如果你使用数组以外的其它东西，这个原则同样适用。</p>
+<p>在我们今年所做的一款应用中，大量使用了Core Data。我们创建了一个类似的类，但并不是用数组作为支持，而是一个获取结果的视图控制器。它实现了所有更新动画的逻辑，并做了组头和删除。然后，你可以创建此对象的实例，并为其提供一个获取请求和一个用于设置 cell 的 block ，其余的事将会被处理的很好。</p>
+<p>此外，这种方式也可以扩展到其它协议。显而易见的是<code>UICollectionViewDataSource</code>。这样将给你带来极大的便利，例如：如果在开发中的某个节点上你决定使用<code>UITableView</code>来代替<code>UICollectionView</code>，这时你会发现很难改变视图控制器中的代码。你甚至可以让你的数据源支持两种协议。</p>
+<p>###将业务逻辑放到Model中</p>
+<p>这是一段从其它应用程序中拿来的在视图控制器中搜寻用户活跃优先级的实例代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">- (void)loadPriorities &#123;</div><div class="line">  NSDate* now = [NSDate date];</div><div class="line">  NSString* formatString = @&quot;startDate &lt;= %@ AND endDate &gt;= %@&quot;;</div><div class="line">  NSPredicate* predicate = [NSPredicate predicateWithFormat:formatString, now, now];</div><div class="line">  NSSet* priorities = [self.user.priorities filteredSetUsingPredicate:predicate];</div><div class="line">  self.priorities = [priorities allObjects];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然而将这段代码添加到<code>User</code>类的分类中会更加清晰，然后<code>View Controller.m</code>看起来是这个样子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- (void)loadPriorities &#123;</div><div class="line">  self.priorities = [self.user currentPriorities];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在<code>User+Extensions.m</code>里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- (NSArray*)currentPriorities &#123;</div><div class="line">  NSDate* now = [NSDate date];</div><div class="line">  NSString* formatString = @&quot;startDate &lt;= %@ AND endDate &gt;= %@&quot;;</div><div class="line">  NSPredicate* predicate = [NSPredicate predicateWithFormat:formatString, now, now];</div><div class="line">  return [[self.priorities filteredSetUsingPredicate:predicate] allObjects];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>一些代码不能轻易移动到 Model 中，但仍然与模型代码相关联，为此，我们可以使用存储类：</p>
+<p>###创建缓存模型</p>
+<p>在我们示例程序的第一个版本中，有些代码是从文件中加载数据并解析。这些代码在视图控制器中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">- (void)readArchive &#123;</div><div class="line">    NSBundle* bundle = [NSBundle bundleForClass:[self class]];</div><div class="line">    NSURL *archiveURL = [bundle URLForResource:@&quot;photodata&quot;</div><div class="line">                                 withExtension:@&quot;bin&quot;];</div><div class="line">    NSAssert(archiveURL != nil, @&quot;Unable to find archive in bundle.&quot;);</div><div class="line">    NSData *data = [NSData dataWithContentsOfURL:archiveURL</div><div class="line">                                         options:0</div><div class="line">                                           error:NULL];</div><div class="line">    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];</div><div class="line">    _users = [unarchiver decodeObjectOfClass:[NSArray class] forKey:@&quot;users&quot;];</div><div class="line">    _photos = [unarchiver decodeObjectOfClass:[NSArray class] forKey:@&quot;photos&quot;];</div><div class="line">    [unarchiver finishDecoding];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>视图控制器本不应该知道这些，为此我们创建了一个存储类来做这些。通过将这些代码分离，我们可以复用这些代码、分别测试并让视图控制器更轻量。存储类可以关心数据的加载、缓存、设置数据库堆栈。这个存储类也经常被称为服务层或仓库。</p>
+<p>###将网络处理逻辑放到Model层</p>
+<p>这与上述主题十分相似：不要在视图控制器中做网络处理逻辑。而是将它封装到不同的类中。你的视图控制器之后可以通过调用方法处理回调（例如：完成的block）。最棒的是你可以在这个类中执行所有缓存和错误处理。</p>
+<p>###将创建UI的代码放到View层</p>
+<p>在视图控制器中不应该创建复杂的视图层次结构。可以使用 Interface Builder 或者将 UI 层封装到 UIView 子类中。例如，如果你创建自己的时间选择器，将其单独封装成 <code>DatePickerView</code> 比将代码写到视图控制器中更说得通。这样又增加了可重用性和简单性。</p>
+<p>如果你喜欢用 Interface Builder ，也可以这么做。有些人认为只能将其用于视图控制器，但你也可以使用自定义的 view 加载单独的 nib 文件。在我们的示例程序中，我们创建了一个 <code>PhotoCell.xib</code> 来包含照片 cell 的布局。<br><img src="https://www.objc.io/images/issue-1/photocell-655ccb15.png" alt="image"></p>
+<p>正如你所看到的，我们为这个自定义 view 创建属性并将它们关联到特定的 UIView 子类上（在这个 xib 中我们并没有使用 File’s Owner 对象）。这个技巧对于其它自定义控件也十分便利。</p>
+<p>###通信</p>
+<p>另外一件经常发生在视图控制器中事是与其它 Controller、Model、View之间的通信。虽然这是视图控制器应该做的事，也是我们想尽可能用少量代码去实现的。</p>
+<p>这里有许多很好解释的技巧对于视图控制器和模型之间的通信（例如 KVO 和 捕获结果控制器），然而视图控制器之间的通信往往不太清楚。</p>
+<p>我们经常遇到某个视图控制器有一些状态并与其它多个视图控制器通讯的问题。通常，将这个状态放到单独的对象中并将其传递给其它视图控制器然后观察和修改这些状态是说的通的。它的优点是状态被放到一个地方，我们最终不会陷入嵌套的委托回调。这是个复杂的问题，今后我们可能把这个问题全部归功于此。</p>
+<p>###结论</p>
+<p>我们看到了一些让视图控制器变轻的技巧。但我们不会尽可能随时随地使用这些技巧，我们只有一个目标：编写可维护的代码。通过了解这些模式，我们有更多的机会避免笨重的视图控制器，并使其更清晰。</p>
+<p>###延伸阅读</p>
+<ul>
+<li><a href="http://developer.apple.com/library/ios/#featuredarticles/ViewControllerPGforiPhoneOS/BasicViewControllers/BasicViewControllers.html" target="_blank" rel="external">View Controller Programming Guide for iOS</a></li>
+<li><a href="http://developer.apple.com/library/mac/#documentation/General/Conceptual/DevPedia-CocoaCore/ControllerObject.html" target="_blank" rel="external">Cocoa Core Competencies: Controller Object</a></li>
+<li><a href="http://subjective-objective-c.blogspot.de/2011/08/writing-high-quality-view-controller.html" target="_blank" rel="external">Writing high quality view controllers</a></li>
+<li><a href="http://programmers.stackexchange.com/questions/184396/mvcs-model-view-controller-store" target="_blank" rel="external">Programmers Stack Exchange: Model View Controller Store</a></li>
+<li><a href="https://speakerdeck.com/trianglecocoa/unburdened-viewcontrollers-by-jay-thrash" target="_blank" rel="external">Unburdened View Controllers</a></li>
+<li><a href="http://programmers.stackexchange.com/questions/177668/how-to-avoid-big-and-clumsy-uitableviewcontroller-on-ios" target="_blank" rel="external">Programmers Stack Exchange: How to avoid big and clumsy UITableViewControllers on iOS</a></li>
+</ul>
+
+        
+        </div>
+        
+           <footer class="article-footer">
+                 <div class="share-container">
+
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+</div>
+
+                 
+    
+
+             </footer>
+        
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Lebih baru</strong>
+            <div class="article-nav-title">
+                
+                    Block那点事儿
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Lebih Tua</strong>
+            <div class="article-nav-title">Linux下配置Tomcat服务器</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">terbaru</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/iOS/">iOS</a></p>
+                            <p class="item-title"><a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/" class="title">KVO实现原理</a></p>
+                            <p class="item-date"><time datetime="2017-09-15T02:32:55.000Z" itemprop="datePublished">2017-09-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/iOS/">iOS</a></p>
+                            <p class="item-title"><a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" class="title">Block那点事儿</a></p>
+                            <p class="item-date"><time datetime="2017-08-22T09:34:59.000Z" itemprop="datePublished">2017-08-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/翻译/">翻译</a></p>
+                            <p class="item-title"><a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" class="title">轻量级视图控制器</a></p>
+                            <p class="item-date"><time datetime="2017-06-08T08:06:43.000Z" itemprop="datePublished">2017-06-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Servers/">Servers</a></p>
+                            <p class="item-title"><a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" class="title">Linux下配置Tomcat服务器</a></p>
+                            <p class="item-date"><time datetime="2017-06-07T03:41:35.000Z" itemprop="datePublished">2017-06-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/13/2017-04-13-macxia-li-yong-ban-wa-gong-vpsshi-xian-ke-xue-shang-wang/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/network/">network</a></p>
+                            <p class="item-title"><a href="/2017/04/13/2017-04-13-macxia-li-yong-ban-wa-gong-vpsshi-xian-ke-xue-shang-wang/" class="title">Mac下利用搬瓦工VPS实现科学上网</a></p>
+                            <p class="item-date"><time datetime="2017-04-13T09:56:34.000Z" itemprop="datePublished">2017-04-13</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">kategori</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Servers/">Servers</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/network/">network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">arsip</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clone-Your-Octopress-to-Blog-From-Two-Places/">Clone Your Octopress to Blog From Two Places</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-Page/">GitHub Page</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/">H5</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSON/">JSON</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Octopress/">Octopress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cocoapods/">cocoapods</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS与H5交互/">iOS与H5交互</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/octopress/">octopress</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人博客/">个人博客</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个性化配置/">个性化配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/交互/">交互</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/同步/">同步</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/服务器/">服务器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/遇到的坑/">遇到的坑</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">awan tag</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Clone-Your-Octopress-to-Blog-From-Two-Places/" style="font-size: 10px;">Clone Your Octopress to Blog From Two Places</a> <a href="/tags/GitHub-Page/" style="font-size: 10px;">GitHub Page</a> <a href="/tags/H5/" style="font-size: 15px;">H5</a> <a href="/tags/JSON/" style="font-size: 10px;">JSON</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/Octopress/" style="font-size: 10px;">Octopress</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/cocoapods/" style="font-size: 10px;">cocoapods</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iOS与H5交互/" style="font-size: 15px;">iOS与H5交互</a> <a href="/tags/octopress/" style="font-size: 15px;">octopress</a> <a href="/tags/个人博客/" style="font-size: 10px;">个人博客</a> <a href="/tags/个性化配置/" style="font-size: 10px;">个性化配置</a> <a href="/tags/交互/" style="font-size: 15px;">交互</a> <a href="/tags/同步/" style="font-size: 10px;">同步</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/遇到的坑/" style="font-size: 10px;">遇到的坑</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tautan</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2017 GnodUxn<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

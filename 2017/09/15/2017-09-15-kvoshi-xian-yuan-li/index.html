@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>KVO实现原理 | GnodUxn&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="KVO">
+<meta name="keywords" content="KVO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KVO实现原理">
+<meta property="og:url" content="http://yoursite.com/child/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/index.html">
+<meta property="og:site_name" content="GnodUxn&#39;s Blog">
+<meta property="og:description" content="KVO">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/KeyValueObserving/Art/kvo_objects_properties.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/KeyValueObserving/Art/kvo_objects_add.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/KeyValueObserving/Art/kvo_objects_remove.png">
+<meta property="og:image" content="https://camo.githubusercontent.com/9517b0d78961b5f32cf3392b99964f2e1f79fb35/687474703a2f2f6936322e74696e797069632e636f6d2f7379353775722e6a7067">
+<meta property="og:updated_time" content="2017-09-23T08:29:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KVO实现原理">
+<meta name="twitter:description" content="KVO">
+<meta name="twitter:image" content="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/KeyValueObserving/Art/kvo_objects_properties.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/css/images/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">GnodUxn&#39;s Blog</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cari" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'pos',
+            PAGES: 'Pages',
+            CATEGORIES: 'kategori',
+            TAGS: 'tag',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cari" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">GnodUxn</h2>
+            <h3 id="title">iOS Developer &amp; Designer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>beijing, China</span>
+            <a id="follow" target="_blank" href="https://github.com/GnodUxn/">IKUTI</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                14
+                <span>pos</span>
+            </div>
+            <div class="article-info-block">
+                20
+                <span>tag</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://twitter.com/GnodUxn" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="http://weibo.com/2739051123" target="_blank" title="weibo" class=tooltip>
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="mailto:wxd.engineer@gmail.com" target="_blank" title="at" class=tooltip>
+                            <i class="fa fa-at"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/atom.xml" target="_blank" title="rrs" class=tooltip>
+                            <i class="fa fa-rrs"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-2017-09-15-kvoshi-xian-yuan-li" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            KVO实现原理
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/">
+            <time datetime="2017-09-15T02:32:55.000Z" itemprop="datePublished">2017-09-15</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/iOS/">iOS</a>
+    </div>
+
+                        
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>有关KVO (Key-Value Observing)大家一定不会觉得陌生，常常被用来监听某个对象属性值的改变。那么有关底层实现原理是需要来探讨的，今天就来说说KVO的基本使用以及实现原理。<a id="more"></a></p>
+<h3 id="什么是KVO"><a href="#什么是KVO" class="headerlink" title="什么是KVO"></a>什么是KVO</h3><p> KVO (Key-Value Observing) 是 Objective-C 对观察者模式（Observer Pattern）的实现。当被观察者对象的某个被观察属性发生变化时，观察者对象会获得通知。</p>
+<h5 id="苹果官方文档中对KVO的定义是"><a href="#苹果官方文档中对KVO的定义是" class="headerlink" title="苹果官方文档中对KVO的定义是"></a>苹果官方文档中对KVO的定义是</h5><blockquote>
+<p>Automatic key-value observing is implemented using a technique called <em>isa-swizzling</em>. </p>
+<p>The <code>isa</code> pointer, as the name suggests, points to the object’s class which maintains a dispatch table. This dispatch table essentially contains pointers to the methods the class implements, among other data. </p>
+<p>When an observer is registered for an attribute of an object the isa pointer of the observed object is modified, pointing to an intermediate class rather than at the true class. As a result the value of the isa pointer does not necessarily reflect the actual class of the instance. </p>
+<p>You should never rely on the <code>isa</code> pointer to determine class membership. Instead, you should use the <code>class</code> method to determine the class of an object instance.</p>
+</blockquote>
+<p>从中可以看到并不想我们想象的那么简单，KVO的实现中使用了黑魔法 <em>isa-swizzling</em>，后面将描述其实现过程。</p>
+<p>下面先来看KVO的基本使用。</p>
+<h3 id="KVO的基本使用"><a href="#KVO的基本使用" class="headerlink" title="KVO的基本使用"></a>KVO的基本使用</h3><p>以下使用官方文档中的Example为例（<a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177-BCICJDHA" target="_blank" rel="external">官方文档</a>）。</p>
+<p>创建两个类，Person类和Account类。假使一个Person对象拥有一个Account对象，代表一个人在银行的储蓄账号。这样，当银行的收益和利率变化时这个人必须时刻注意到。在Account类中添加两个公共属性，如图所示：</p>
+<p><img src="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/KeyValueObserving/Art/kvo_objects_properties.png" alt="image"></p>
+<p>既然Account类的属性是公共的，Person对象可以通过轮询查找来获取Account属性值的变化，但显然这样效率低下。</p>
+<p>1、为Person对象添加监听对象，调用方法：<code>addObserver:forKeyPath:options:context:</code> 。</p>
+<p>2、在Person类中实现<code>observeValueForKeyPath:ofObject:change:context:</code>方法。这样，当Account属性值发生变化时就会调用此方法，将其值的变化通知过来。</p>
+<p><img src="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/KeyValueObserving/Art/kvo_objects_add.png" alt="image"></p>
+<p>3、最后，当不再希望收到通知时一定要在Person类销毁时注销通知，调用<code>removeObserver:forKeyPath:</code>方法。</p>
+<p><img src="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/KeyValueObserving/Art/kvo_objects_remove.png" alt="image"></p>
+<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>KVO是基于Runtime实现的，其实现过程 <a href="https://github.com/ChenYilong" target="_blank" rel="external">ChenYilong</a> (微博<a href="http://weibo.com/luohanchenyilong?from=profile&amp;wvr=6&amp;is_hot=1" target="_blank" rel="external">@iOS程序犭袁</a>)在下面这张图中画的很明白。</p>
+<p><img src="https://camo.githubusercontent.com/9517b0d78961b5f32cf3392b99964f2e1f79fb35/687474703a2f2f6936322e74696e797069632e636f6d2f7379353775722e6a7067" alt="image"></p>
+<ol>
+<li>当观察一个对象的时候，运行期系统会动态创建一个新的类。</li>
+<li>这个类继承自该对象的原本的类，并重写了被观察属性的 setter 方法。重写的 setter 方法会负责在调用原 setter 方法之前和之后（被观察属性发生改变之前 <code>willChangeValueForKey:</code>方法会被调，被观察的属性发生改变之后<code>didChangeValueForKey:</code>方法则会被调用），通知所有观察对象：值的更改。</li>
+<li>最后通过 <code>isa 混写（isa-swizzling）</code> 把这个对象的 isa 指针 ( isa 指针告诉 Runtime 系统这个对象的类是什么 ) 指向这个新创建的子类，对象就神奇的变成了新创建的子类的实例。</li>
+</ol>
+<p>感谢<a href="https://github.com/ChenYilong" target="_blank" rel="external">ChenYilong</a> 在《<a href="https://github.com/ChenYilong/iOSInterviewQuestions/blob/master/01%E3%80%8A%E6%8B%9B%E8%81%98%E4%B8%80%E4%B8%AA%E9%9D%A0%E8%B0%B1%E7%9A%84iOS%E3%80%8B%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88/%E3%80%8A%E6%8B%9B%E8%81%98%E4%B8%80%E4%B8%AA%E9%9D%A0%E8%B0%B1%E7%9A%84iOS%E3%80%8B%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88%EF%BC%88%E4%B8%8B%EF%BC%89.md" target="_blank" rel="external">《招聘一个靠谱的 iOS》—参考答案（下）</a>》中的精彩答案，节省了我很多时间去研究KVO的实现细节。</p>
+<h3 id="手写KVO"><a href="#手写KVO" class="headerlink" title="手写KVO"></a>手写KVO</h3><p>这里推荐Glow 技术团队博客上的一篇文章《<a href="http://tech.glowing.com/cn/implement-kvo/" target="_blank" rel="external">如何自己动手实现 KVO</a>》，文章里关于KVO实现细节是我在网上看到最全的，而且附带源码。感兴趣的同学可以去看看。这里就不浪费空间贴大量代码了。</p>
+<h3 id="KVO的不足"><a href="#KVO的不足" class="headerlink" title="KVO的不足"></a>KVO的不足</h3><p>KVO一度被认为是非常不好的API，比如其 <strong>以字符串作为关键字</strong>、<strong>remove observer不当会导致crash</strong>，《<a href="https://www.mikeash.com/pyblog/key-value-observing-done-right.html" target="_blank" rel="external">Key-Value Observing Done Right</a>》、《<a href="http://khanlou.com/2013/12/kvo-considered-harmful/" target="_blank" rel="external">KVO Considered Harmful</a>》以及Mattt Thompson在《<a href="http://nshipster.com/key-value-observing/" target="_blank" rel="external">Key-Value Observing</a>》中都强调了KVO的不足之处，有兴趣可以去看下。</p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/KeyValueObserving/Articles/KVOImplementation.html#//apple_ref/doc/uid/20002307-BAJEAIEE" target="_blank" rel="external">Key-Value Observing Programming Guide</a></li>
+<li><a href="(https://github.com/ChenYilong/iOSInterviewQuestions/blob/master/01%E3%80%8A%E6%8B%9B%E8%81%98%E4%B8%80%E4%B8%AA%E9%9D%A0%E8%B0%B1%E7%9A%84iOS%E3%80%8B%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88/%E3%80%8A%E6%8B%9B%E8%81%98%E4%B8%80%E4%B8%AA%E9%9D%A0%E8%B0%B1%E7%9A%84iOS%E3%80%8B%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88%EF%BC%88%E4%B8%8B%EF%BC%89.md">《招聘一个靠谱的 iOS》—参考答案（下）</a></li>
+<li><a href="http://tech.glowing.com/cn/implement-kvo/" target="_blank" rel="external">如何自己动手实现 KVO</a></li>
+<li><a href="http://nshipster.com/key-value-observing/" target="_blank" rel="external">Key-Value Observing</a></li>
+<li><a href="https://www.mikeash.com/pyblog/key-value-observing-done-right.html" target="_blank" rel="external">Key-Value Observing Done Right</a></li>
+<li><a href="http://khanlou.com/2013/12/kvo-considered-harmful/" target="_blank" rel="external">KVO Considered Harmful</a></li>
+</ul>
+
+        
+        </div>
+        
+           <footer class="article-footer">
+                 <div class="share-container">
+
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+</div>
+
+                 
+    
+
+             </footer>
+        
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Lebih Tua</strong>
+            <div class="article-nav-title">Block那点事儿</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">terbaru</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/iOS/">iOS</a></p>
+                            <p class="item-title"><a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/" class="title">KVO实现原理</a></p>
+                            <p class="item-date"><time datetime="2017-09-15T02:32:55.000Z" itemprop="datePublished">2017-09-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/iOS/">iOS</a></p>
+                            <p class="item-title"><a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" class="title">Block那点事儿</a></p>
+                            <p class="item-date"><time datetime="2017-08-22T09:34:59.000Z" itemprop="datePublished">2017-08-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/翻译/">翻译</a></p>
+                            <p class="item-title"><a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" class="title">轻量级视图控制器</a></p>
+                            <p class="item-date"><time datetime="2017-06-08T08:06:43.000Z" itemprop="datePublished">2017-06-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Servers/">Servers</a></p>
+                            <p class="item-title"><a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" class="title">Linux下配置Tomcat服务器</a></p>
+                            <p class="item-date"><time datetime="2017-06-07T03:41:35.000Z" itemprop="datePublished">2017-06-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/13/2017-04-13-macxia-li-yong-ban-wa-gong-vpsshi-xian-ke-xue-shang-wang/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/network/">network</a></p>
+                            <p class="item-title"><a href="/2017/04/13/2017-04-13-macxia-li-yong-ban-wa-gong-vpsshi-xian-ke-xue-shang-wang/" class="title">Mac下利用搬瓦工VPS实现科学上网</a></p>
+                            <p class="item-date"><time datetime="2017-04-13T09:56:34.000Z" itemprop="datePublished">2017-04-13</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">kategori</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Servers/">Servers</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/network/">network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">arsip</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clone-Your-Octopress-to-Blog-From-Two-Places/">Clone Your Octopress to Blog From Two Places</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-Page/">GitHub Page</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/">H5</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSON/">JSON</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Octopress/">Octopress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cocoapods/">cocoapods</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS与H5交互/">iOS与H5交互</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/octopress/">octopress</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人博客/">个人博客</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个性化配置/">个性化配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/交互/">交互</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/同步/">同步</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/服务器/">服务器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/遇到的坑/">遇到的坑</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">awan tag</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Clone-Your-Octopress-to-Blog-From-Two-Places/" style="font-size: 10px;">Clone Your Octopress to Blog From Two Places</a> <a href="/tags/GitHub-Page/" style="font-size: 10px;">GitHub Page</a> <a href="/tags/H5/" style="font-size: 15px;">H5</a> <a href="/tags/JSON/" style="font-size: 10px;">JSON</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/Octopress/" style="font-size: 10px;">Octopress</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/cocoapods/" style="font-size: 10px;">cocoapods</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iOS与H5交互/" style="font-size: 15px;">iOS与H5交互</a> <a href="/tags/octopress/" style="font-size: 15px;">octopress</a> <a href="/tags/个人博客/" style="font-size: 10px;">个人博客</a> <a href="/tags/个性化配置/" style="font-size: 10px;">个性化配置</a> <a href="/tags/交互/" style="font-size: 15px;">交互</a> <a href="/tags/同步/" style="font-size: 10px;">同步</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/遇到的坑/" style="font-size: 10px;">遇到的坑</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tautan</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2017 GnodUxn<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

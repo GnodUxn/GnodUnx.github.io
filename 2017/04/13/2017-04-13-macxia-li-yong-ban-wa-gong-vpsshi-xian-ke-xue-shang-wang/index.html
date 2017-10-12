@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Mac下利用搬瓦工VPS实现科学上网 | GnodUxn&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Mac下利用搬瓦工VPS实现科学上网">
+<meta name="keywords" content="Mac ,网络, 搬瓦工, VPS, 科学上网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac下利用搬瓦工VPS实现科学上网">
+<meta property="og:url" content="http://yoursite.com/child/2017/04/13/2017-04-13-macxia-li-yong-ban-wa-gong-vpsshi-xian-ke-xue-shang-wang/index.html">
+<meta property="og:site_name" content="GnodUxn&#39;s Blog">
+<meta property="og:description" content="Mac下利用搬瓦工VPS实现科学上网">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/20160204185518833.png">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/20160204185846708.png">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20161121155527018-1135696125.jpg">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/20160204191017661.png">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/20160204191047052.png">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/20160204191618152.png">
+<meta property="og:image" content="http://img.blog.csdn.net/20160204191717231">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/20160204191934078.png">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/20160204192138050.png">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20161121160723190-1614906842.png">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20161121163859628-1669698799.png">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161051596-283512173.png">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161327206-2023687985.png">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161414534-1418731061.png">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161458800-2039233982.png">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161603612-1299046595.png">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161646940-1015572090.png">
+<meta property="og:updated_time" content="2017-09-23T08:29:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac下利用搬瓦工VPS实现科学上网">
+<meta name="twitter:description" content="Mac下利用搬瓦工VPS实现科学上网">
+<meta name="twitter:image" content="http://oo6qj81tq.bkt.clouddn.com/20160204185518833.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/css/images/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">GnodUxn&#39;s Blog</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cari" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'pos',
+            PAGES: 'Pages',
+            CATEGORIES: 'kategori',
+            TAGS: 'tag',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cari" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">GnodUxn</h2>
+            <h3 id="title">iOS Developer &amp; Designer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>beijing, China</span>
+            <a id="follow" target="_blank" href="https://github.com/GnodUxn/">IKUTI</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                14
+                <span>pos</span>
+            </div>
+            <div class="article-info-block">
+                20
+                <span>tag</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://twitter.com/GnodUxn" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="http://weibo.com/2739051123" target="_blank" title="weibo" class=tooltip>
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="mailto:wxd.engineer@gmail.com" target="_blank" title="at" class=tooltip>
+                            <i class="fa fa-at"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/atom.xml" target="_blank" title="rrs" class=tooltip>
+                            <i class="fa fa-rrs"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-2017-04-13-macxia-li-yong-ban-wa-gong-vpsshi-xian-ke-xue-shang-wang" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Mac下利用搬瓦工VPS实现科学上网
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/04/13/2017-04-13-macxia-li-yong-ban-wa-gong-vpsshi-xian-ke-xue-shang-wang/">
+            <time datetime="2017-04-13T09:56:34.000Z" itemprop="datePublished">2017-04-13</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/network/">network</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Mac/">Mac</a>, <a class="tag-link" href="/tags/网络/">网络</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>###Step 1：购买搬瓦工VPS<br>登录<a href="https://bwh1.net/cart.php?a=confproduct&amp;i=1" target="_blank" rel="external">搬瓦工官网</a><a id="more"></a></p>
+<ol>
+<li><strong>选择套餐</strong><br><img src="http://oo6qj81tq.bkt.clouddn.com/20160204185518833.png" alt="image"><br>套餐选择，一般只是用来上网的话用19.99美元一年的就比较合适，每月550G带宽足够，可根据个人用途选择套餐。搬瓦工VPSLocation，一共有洛杉矶、佛罗里达、荷兰、凤凰城4个数据中心，我们可以根据需要选择，一般我们会选择洛杉矶数据中心，因为速度比较快。具体对比信息可以去官网上找。</li>
+<li><strong>确认订单</strong><br><img src="http://oo6qj81tq.bkt.clouddn.com/20160204185846708.png" alt="image"></li>
+<li><strong>支付订单</strong><br>支付之前，需要注册账号，需要完善相应的信息<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121155527018-1135696125.jpg" alt="image"><br>这里比较关键，我们输入个人信息，英文或者拼音都可以，邮箱是新的，密码需要正确，国家不要乱写，选择自己的国家，然后地区，路段都可以任意的拼音，但也不要乱写。先点击更新个人信息，然后勾选条款，点击付款。</li>
+<li>最后，我们可以用支付宝、PAYPAL、信用卡付款，现在我们不需要代购，可以直接自己购买，很方便。<br><img src="http://oo6qj81tq.bkt.clouddn.com/20160204191017661.png" alt="image"><br><img src="http://oo6qj81tq.bkt.clouddn.com/20160204191047052.png" alt="image"><br>可以选择支付宝购买，我在mac上使用Firefox、Safari浏览器打开此界面点击pay now都没有出现弹框，最后用手机完成的支付。完成以上操作，就能成功购买VPS。</li>
+</ol>
+<p>###Step 2：搭建VPS<br>下面是搬瓦工搭建VPS过程</p>
+<ol>
+<li>进入My Services<br><img src="http://oo6qj81tq.bkt.clouddn.com/20160204191618152.png" alt="image"></li>
+<li>进入KiwiVM Control Panel<br><img src="http://img.blog.csdn.net/20160204191717231" alt="image"><br><img src="http://oo6qj81tq.bkt.clouddn.com/20160204191934078.png" alt="image"></li>
+<li>安装Shaowscocks服务端<br><img src="http://oo6qj81tq.bkt.clouddn.com/20160204192138050.png" alt="image"></li>
+<li>安装Shaowscocks客户端<br>下载地址：<a href="https://github.com/shadowsocks/shadowsocks-iOS/releases" target="_blank" rel="external">https://github.com/shadowsocks/shadowsocks-iOS/releases</a> ，界面如下：<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121160723190-1614906842.png" alt="image"><br>地址填写服务器地址，端口和密码就是控制台Shadowsocks Server里生成的端口、密码。备注可以为空。这个时候就可以实现单人上网了。</li>
+</ol>
+<p>###Step 3：搬瓦工VPS shadowsocks多用户端口配置</p>
+<ol>
+<li>远程登录服务器，在终端输入：<code>ssh root@服务器ip -p 服务器端口</code>，输入密码，KiviVM控制台Root password modification生成的密码，这个密码就是你用来远程登录服务器的密码。</li>
+<li><p>依次运行以下命令：<br><br><code>wget --no-check-certificate https://bandwagong.b0.upaiyun.com/uploads/ss.sh</code><br><br><code>chmod +x ss.sh</code><br><br><code>./ss.sh 2&gt;&amp;1 | tee shadowsocks.log</code> ，这里要耐心等待。<br><br>安装成功会出现如下界面：<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121163859628-1669698799.png" alt="image"><br><strong>卸载方法：</strong><br><br>使用<code>root</code>用户登录，运行以下命令： <code>./ss.sh uninstall</code><br><br><strong>多用户配置文件</strong><br><br>配置文件路径：<code>vi /etc/shadowsocks.json</code><br><br>按i键进入编辑模式：插入如下命令<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161051596-283512173.png" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;server&quot;:&quot;0.0.0.0&quot;,   </div><div class="line">  &quot;local_address&quot;:&quot;127.0.0.1&quot;,</div><div class="line">  &quot;local_port&quot;:1080,</div><div class="line">  &quot;port_password&quot;:&#123;</div><div class="line">                  &quot;端口号1&quot;:&quot;密码1&quot;,</div><div class="line">                  &quot;端口号2&quot;:&quot;密码2&quot;,</div><div class="line">                  &quot;端口号3&quot;:&quot;密码3&quot;,</div><div class="line">                  &quot;端口号4&quot;:&quot;密码4&quot;,</div><div class="line">                  &quot;端口号5&quot;:&quot;密码5&quot;</div><div class="line">                  &#125;,</div><div class="line">    &quot;timeout&quot;:300,</div><div class="line">    &quot;method&quot;:&quot;aes-256-cfb&quot;,</div><div class="line">    &quot;fast_open&quot;: false</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>端口号可以自己定义，但注意不要与系统的端口重复。<br><br>重启shadowsocks就可以在客户端通过设置的端口号、密码来登录。<br><br>使用命令<br><br>启动：<code>/etc/init.d/shadowsocks start</code><br><br>停止：<code>/etc/init.d/shadowsocks stop</code><br><br>重启：<code>/etc/init.d/shadowsocks restart</code><br><br>状态：<code>/etc/init.d/shadowsocks status</code><br></p>
+<p>###Step 4：加速</p>
+<p>####安装net-speeder过程：<br>Net-Speeder是一个linux软件，主要目的是为了解决丢包问题，实现TCP双倍发包流量，可以减少超时和提高下载速度。也就是同一个数据包发送两份，这样的话在服务器带宽充足情况下，丢包率会平方级降低。网络传输速度也会有所提升。</p>
+<ol>
+<li>还是通过远程登录服务器，输入密码后在终端输入<code>wget http://www.banwagong.me/tools/centos_net-speeder.sh</code>,成功后显示如下<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161327206-2023687985.png" alt="image"></li>
+<li>输入命令：<code>sh centos_net-speeder.sh</code> ，此时需要等待一段时间。可能会出现错误404，如图所示：<br> <img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161414534-1418731061.png" alt="image"><br> 原因是：搬瓦工的centos_net-speeder.sh文件中要去google下载一个net_speeder-v0.1.tar.gz的压缩包，而google的这个网址已经404了。<br><br> 解决方法：使用命令 <code>vi centos_net-speeder.sh</code><br><br> 进入如下界面，找到下图红框标注的位置：<br> <img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161458800-2039233982.png" alt="image"><br> 将原来的<code>http://net-speeder.googlecode.com/files/net_speeder-v0.1.tar.gz</code>替换为<code>http://coding.net/u/njzhenghao/p/download/git/raw/master/net_speeder-v0.1.tar.gz</code>，即上图框中的路径。然后保存退出。<br><br> 再此执行：<code>sh centos_net-speeder.sh</code>，这时就会出现下面的界面：<br> <img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161603612-1299046595.png" alt="image"></li>
+<li>输入<code>nohup /usr/local/net_speeder/net_speeder venet0 &quot;ip&quot; &gt;/dev/null 2&gt;&amp;1 &amp;</code> ，回车。</li>
+<li>最后你就可以试着<code>ping</code>一下google了<br> <img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161646940-1015572090.png" alt="image"><br> 这时你就会发现每条数据包的后面都会加一个（DUP！），此标志就说明流量包双倍发送，加速成功。</li>
+<li>到此为止，所有的配置工作就已经做完，你可以打开Shadowsocks客户端（小飞机）输入你的ip、端口号和密码，然后就可以去国外的网站肆意驰骋了。</li>
+</ol>
+
+        
+        </div>
+        
+           <footer class="article-footer">
+                 <div class="share-container">
+
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+</div>
+
+                 
+    
+
+             </footer>
+        
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Lebih baru</strong>
+            <div class="article-nav-title">
+                
+                    Linux下配置Tomcat服务器
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/04/13/2017-04-13-afnetworking3-dot-0-post-jsonshu-ju/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Lebih Tua</strong>
+            <div class="article-nav-title">AFNetworking3.0 Post JSON数据</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">terbaru</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/iOS/">iOS</a></p>
+                            <p class="item-title"><a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/" class="title">KVO实现原理</a></p>
+                            <p class="item-date"><time datetime="2017-09-15T02:32:55.000Z" itemprop="datePublished">2017-09-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/iOS/">iOS</a></p>
+                            <p class="item-title"><a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" class="title">Block那点事儿</a></p>
+                            <p class="item-date"><time datetime="2017-08-22T09:34:59.000Z" itemprop="datePublished">2017-08-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/翻译/">翻译</a></p>
+                            <p class="item-title"><a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" class="title">轻量级视图控制器</a></p>
+                            <p class="item-date"><time datetime="2017-06-08T08:06:43.000Z" itemprop="datePublished">2017-06-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Servers/">Servers</a></p>
+                            <p class="item-title"><a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" class="title">Linux下配置Tomcat服务器</a></p>
+                            <p class="item-date"><time datetime="2017-06-07T03:41:35.000Z" itemprop="datePublished">2017-06-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/13/2017-04-13-macxia-li-yong-ban-wa-gong-vpsshi-xian-ke-xue-shang-wang/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/network/">network</a></p>
+                            <p class="item-title"><a href="/2017/04/13/2017-04-13-macxia-li-yong-ban-wa-gong-vpsshi-xian-ke-xue-shang-wang/" class="title">Mac下利用搬瓦工VPS实现科学上网</a></p>
+                            <p class="item-date"><time datetime="2017-04-13T09:56:34.000Z" itemprop="datePublished">2017-04-13</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">kategori</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Servers/">Servers</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/network/">network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">arsip</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clone-Your-Octopress-to-Blog-From-Two-Places/">Clone Your Octopress to Blog From Two Places</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-Page/">GitHub Page</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/">H5</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSON/">JSON</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Octopress/">Octopress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cocoapods/">cocoapods</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS与H5交互/">iOS与H5交互</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/octopress/">octopress</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人博客/">个人博客</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个性化配置/">个性化配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/交互/">交互</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/同步/">同步</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/服务器/">服务器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/遇到的坑/">遇到的坑</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">awan tag</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Clone-Your-Octopress-to-Blog-From-Two-Places/" style="font-size: 10px;">Clone Your Octopress to Blog From Two Places</a> <a href="/tags/GitHub-Page/" style="font-size: 10px;">GitHub Page</a> <a href="/tags/H5/" style="font-size: 15px;">H5</a> <a href="/tags/JSON/" style="font-size: 10px;">JSON</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/Octopress/" style="font-size: 10px;">Octopress</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/cocoapods/" style="font-size: 10px;">cocoapods</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iOS与H5交互/" style="font-size: 15px;">iOS与H5交互</a> <a href="/tags/octopress/" style="font-size: 15px;">octopress</a> <a href="/tags/个人博客/" style="font-size: 10px;">个人博客</a> <a href="/tags/个性化配置/" style="font-size: 10px;">个性化配置</a> <a href="/tags/交互/" style="font-size: 15px;">交互</a> <a href="/tags/同步/" style="font-size: 10px;">同步</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/遇到的坑/" style="font-size: 10px;">遇到的坑</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tautan</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2017 GnodUxn<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Linux下配置Tomcat服务器 | GnodUxn&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Linux下配置Tomcat服务器">
+<meta name="keywords" content="Linux, Tomcat, 服务器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux下配置Tomcat服务器">
+<meta property="og:url" content="http://yoursite.com/child/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/index.html">
+<meta property="og:site_name" content="GnodUxn&#39;s Blog">
+<meta property="og:description" content="Linux下配置Tomcat服务器">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-06-07%20%E4%B8%8B%E5%8D%884.07.41.png">
+<meta property="og:updated_time" content="2017-09-23T08:29:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux下配置Tomcat服务器">
+<meta name="twitter:description" content="Linux下配置Tomcat服务器">
+<meta name="twitter:image" content="http://oo6qj81tq.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-06-07%20%E4%B8%8B%E5%8D%884.07.41.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/css/images/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">GnodUxn&#39;s Blog</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cari" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'pos',
+            PAGES: 'Pages',
+            CATEGORIES: 'kategori',
+            TAGS: 'tag',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cari" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">GnodUxn</h2>
+            <h3 id="title">iOS Developer &amp; Designer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>beijing, China</span>
+            <a id="follow" target="_blank" href="https://github.com/GnodUxn/">IKUTI</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                14
+                <span>pos</span>
+            </div>
+            <div class="article-info-block">
+                20
+                <span>tag</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://twitter.com/GnodUxn" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="http://weibo.com/2739051123" target="_blank" title="weibo" class=tooltip>
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="mailto:wxd.engineer@gmail.com" target="_blank" title="at" class=tooltip>
+                            <i class="fa fa-at"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/atom.xml" target="_blank" title="rrs" class=tooltip>
+                            <i class="fa fa-rrs"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Linux下配置Tomcat服务器
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/">
+            <time datetime="2017-06-07T03:41:35.000Z" itemprop="datePublished">2017-06-07</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Servers/">Servers</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Linux/">Linux</a>, <a class="tag-link" href="/tags/Tomcat/">Tomcat</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>VPS买了一段时间了，平时只是用来FQ上网（如果想要购买<code>VPS</code>来FQ上国外网站，请参考：<a href="http://wanxudong.top/blog/2017/04/13/macxia-li-yong-ban-wa-gong-vpsshi-xian-ke-xue-shang-wang/" target="_blank" rel="external">Mac下利用搬瓦工VPS实现科学上网</a>），白白浪费了大好资源。今天就来说说在<code>VPS</code>上搭建<code>Tomcat</code>的过程以及遇到的坑。<a id="more"></a></p>
+<p>###前提</p>
+<ul>
+<li><code>VPS</code>已安装<code>Linux</code>系统（文中所有操作是在<code>Centos 6 x86_64 minimal</code>系统下）</li>
+<li>本地安装<code>SecureCRT</code>（文中本地使用<code>Mac OS X EI Capitan</code>系统，下面会详细介绍<code>SecureCRT</code>安装过程）</li>
+</ul>
+<p>###安装 SecureCRT<br><code>SecureCRT</code>是一款支持<code>SSH</code>（<code>SSH1</code>和<code>SSH2</code>）的终端仿真程序。</p>
+<p>这里提供8.0.4版本的百度云盘下载<a href="https://pan.baidu.com/s/1o8DElE6" target="_blank" rel="external">地址</a>，提取码：<code>pquq</code>。更多版本可以到<a href="http://xclient.info" target="_blank" rel="external">Xclinet</a>上下载，<code>Xclinet</code>上有很多免费的<code>Mac</code>软件及破解方法，非常方便。</p>
+<p><code>Tips:</code> <code>Xclinet</code>上下载的软件解压密码都是<code>xclient.info</code>。</p>
+<ul>
+<li>将 <code>DMG</code> 中的 <code>SecureCRT.app</code> 移动至 <code>Applications</code> 文件夹。</li>
+<li>在<code>Launchpad</code>中点击打开，正常运行程序一次，然后关闭掉。</li>
+<li>使用补丁文件夹中的 <code>SecureCRT</code> 文件替换以下文件  <code>/Applications/SecureCRT.app/Contents/MacOS/SecureCRT</code>。</li>
+<li>正常运行应用程序，在弹出的注册页面点击 “Continue”，进入下一个界面，点击左下角的 <code>Enter License Manually</code>，将 <code>README.md</code> 中的激活码依次填入，安装成功。</li>
+</ul>
+<p>安装成功后，就可以通过<code>SecureCRT</code>远程登录操作服务器。</p>
+<p>###安装 JDK<br>安装<code>Tomcat</code>首先需要先配置<code>JDK</code> ，<code>JDK</code>下载<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="external">地址</a>。由于是为<code>VPS</code>安装<code>JDK</code>，所以需要登录远程服务器，创建一个目录用来下载安装<code>JDK</code>。</p>
+<ul>
+<li>进入<code>JDK</code>下载地址，选择和cpu位数对应的<code>tar.gz</code>包。点击<code>Accept License Agreement</code>，复制链接地址。</li>
+<li>登录远程服务器，<code>cd</code>到指定目录。</li>
+<li><code>wget http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz</code>(wget 下载地址)</li>
+<li><code>tar -xzvf jdk-8u131-linux-x64.tar.gz</code>  (解压)</li>
+</ul>
+<p>若解压失败，使用<code>sh -du *</code>查看文件大小，如果只有几K，代表下载失败。使用下面的命令重新下载<code>JDK</code>。</p>
+<p>输入命令:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget -c -P /java/jdk --no-check-certificate --no-cookie --header &quot;Cookie: s_nr=1479818001999; s_cc=true; s_sq=oracledevall%3D%2526pid%253Docom%25253Aen-us%25253A%25252Fcn%25252Fjava%25252Fjavase%25252Foverview%25252F%2526pidt%253D1%2526oid%253Dotn%25253Acn%25253Atab%25253Ajava%25253A%2525E4%2525B8%25258B%2525E8%2525BD%2525BD%2526oidt%253D1%2526ot%253DA%2526oi%253D1; ELOQUA=GUID=4b703a6e148b4855a6708de929b383a5; gpw_e24=http%3A%2F%2Fwww.oracle.com%2Ftechnetwork%2Fcn%2Fjava%2Fjavase%2Fdownloads%2Fjdk7-downloads-1880260.html; oraclelicense=accept-securebackup-cookie&quot; http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz</div></pre></td></tr></table></figure>
+<p>还可以使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate --no-cookies --header &quot;Cookie: oraclelicense=accept-securebackup-cookie&quot; http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz</div></pre></td></tr></table></figure>
+<p>下载好的目录在 <code>/java/jdk</code>，重复第四步解压。</p>
+<p>####配置 JDK</p>
+<ul>
+<li><code>cd ~</code>，到root路径下配置<code>.bashrc</code>文件</li>
+<li><code>vi .bashrc</code>，编辑<code>.bashrc</code>，在文件中<code># .bashrc</code>下面添加以下三行代码，只需修改第一行<code>JAVA_HOME=</code>后的路径为刚刚解压的<code>JDK</code>路径即可。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/java/jdk/jdk1.8.0_131</div><div class="line">export CLASSPATH=$&#123;JAVA_HOME&#125;/lib</div><div class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</div></pre></td></tr></table></figure>
+<ul>
+<li><code>source ~/.bashrc</code>，执行后此环境变量就生效了，不过此时要想全局生效需要重启系统。</li>
+<li><code>reboot</code>，重启系统。稍等一会儿重新连接远程服务器。</li>
+<li><code>Java -version</code>，查看<code>Java</code>版本，如果可以看到版本号就表示配置成功了。下面开始安装Tomcat。</li>
+</ul>
+<p>###安装 Tomcat<br><code>Tomcat</code><a href="http://tomcat.apache.org/download-90.cgi" target="_blank" rel="external">下载地址</a>，和<code>JDK</code>的下载方式一样，这里还是下载<code>tar.gz</code>包。</p>
+<ul>
+<li>在下载地址<code>Binary Distributions</code>–&gt;<code>Core</code>中选择<code>tar.gz (pgp, md5, sha1)</code>复制链接地址。</li>
+<li><code>cd</code>到指定目录。</li>
+<li><code>wget https://www.apache.org/dist/tomcat/tomcat-9/v9.0.0.M21/bin/apache-tomcat-9.0.0.M21.tar.gz.sha1</code></li>
+<li><code>tar -xzvf apache-tomcat-9.0.0.M21.tar.gz</code>，解压。</li>
+<li>进入解压目录的<code>bin</code>文件夹，运行命令<code>./startup.sh</code>，会出现</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Using CATALINA_BASE:   /java/apache-tomcat-9.0.0.M21</div><div class="line">Using CATALINA_HOME:   /java/apache-tomcat-9.0.0.M21</div><div class="line">Using CATALINA_TMPDIR: /java/apache-tomcat-9.0.0.M21/temp</div><div class="line">Using JRE_HOME:        /java/jdk/jdk1.8.0_131</div><div class="line">Using CLASSPATH:       /java/apache-tomcat-9.0.0.M21/bin/bootstrap.jar:/java/apache-tomcat-9.0.0.M21/bin/tomcat-juli.jar</div><div class="line">Tomcat started.</div></pre></td></tr></table></figure>
+<ul>
+<li>验证是否开启服务，在浏览器输入<code>http://服务器ip:8080</code>，如果出现以下界面代表服务已经启动。<br><img src="http://oo6qj81tq.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-06-07%20%E4%B8%8B%E5%8D%884.07.41.png" alt="image"></li>
+</ul>
+<p>###上传文件<br>前期做了一大堆安装配置，其实我想要做的只是把本地写的Web demo跑到外网上去。这里我使用<code>rz</code>命令行上传。Linux中rz命令和sz命令都可用于文件传输。</p>
+<p><code>sz</code>：将选定的文件<code>send</code>(发送)到本地机器。</p>
+<p><code>rz</code>：运行该命令会弹出一个文件选择窗口，从本地选择文件上传到<code>Linux</code>服务器。</p>
+<p>首先借助<code>securtCRT</code>登录服务器执行以下操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">yum install -y lrzsz               # 在VPS上安装&quot;sz\rz&quot;。</div><div class="line">cd apache-tomcat-9.0.0.M21         # apache-tomcat-9.0.0.M21是解压Tomcat后的目录</div><div class="line">cd webapps/ROOT                    # 进入ROOT目录</div><div class="line">rz                                 # 这时会弹出选择文件的窗口</div></pre></td></tr></table></figure>
+<p><code>Tips:</code> 上传的内容必须是文件，不能是文件夹。所以如果想要上传文件夹，只需在本地压缩上传后在服务器解压。</p>
+<p><code>例如：</code> 这里我要上传的是一个名为<code>pet</code>的<code>Web</code>项目(<code>pet</code>目录下有<code>index.html</code>、<code>source</code>、<code>css</code>)，我只需在本地压缩。然后使用<code>rz</code>上传到<code>ROOT</code>目录下，用<code>unzip pet.zip</code>解压，最后使用<code>rm -rf pet.zip</code>删除压缩包即可。访问<code>Web</code>项目根文件的路径规则为: <code>http://服务器ip:8080/pet/index.html</code>。</p>
+<p>当然，上传文件还可以通过<code>SFTP</code>、<code>FTP</code>、<code>SCP</code>等方式，之后会补充完善其他上传方式。</p>
+<hr>
+<p>###参考文章：</p>
+<ul>
+<li><a href="http://blog.csdn.net/qq_26819733/article/details/51925582" target="_blank" rel="external">Linux安装JDK </a></li>
+<li><a href="http://blog.csdn.net/qq_26819733/article/details/51926036" target="_blank" rel="external">Linux安装Tomcat9 </a></li>
+<li><a href="http://www.tuicool.com/articles/FnAvEz3" target="_blank" rel="external">Linux下使用wget 命令下载JDK7的方法</a></li>
+</ul>
+
+        
+        </div>
+        
+           <footer class="article-footer">
+                 <div class="share-container">
+
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+</div>
+
+                 
+    
+
+             </footer>
+        
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Lebih baru</strong>
+            <div class="article-nav-title">
+                
+                    轻量级视图控制器
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/04/13/2017-04-13-macxia-li-yong-ban-wa-gong-vpsshi-xian-ke-xue-shang-wang/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Lebih Tua</strong>
+            <div class="article-nav-title">Mac下利用搬瓦工VPS实现科学上网</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">terbaru</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/iOS/">iOS</a></p>
+                            <p class="item-title"><a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/" class="title">KVO实现原理</a></p>
+                            <p class="item-date"><time datetime="2017-09-15T02:32:55.000Z" itemprop="datePublished">2017-09-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/iOS/">iOS</a></p>
+                            <p class="item-title"><a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" class="title">Block那点事儿</a></p>
+                            <p class="item-date"><time datetime="2017-08-22T09:34:59.000Z" itemprop="datePublished">2017-08-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/翻译/">翻译</a></p>
+                            <p class="item-title"><a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" class="title">轻量级视图控制器</a></p>
+                            <p class="item-date"><time datetime="2017-06-08T08:06:43.000Z" itemprop="datePublished">2017-06-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Servers/">Servers</a></p>
+                            <p class="item-title"><a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" class="title">Linux下配置Tomcat服务器</a></p>
+                            <p class="item-date"><time datetime="2017-06-07T03:41:35.000Z" itemprop="datePublished">2017-06-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/13/2017-04-13-macxia-li-yong-ban-wa-gong-vpsshi-xian-ke-xue-shang-wang/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/network/">network</a></p>
+                            <p class="item-title"><a href="/2017/04/13/2017-04-13-macxia-li-yong-ban-wa-gong-vpsshi-xian-ke-xue-shang-wang/" class="title">Mac下利用搬瓦工VPS实现科学上网</a></p>
+                            <p class="item-date"><time datetime="2017-04-13T09:56:34.000Z" itemprop="datePublished">2017-04-13</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">kategori</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Servers/">Servers</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/network/">network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">arsip</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">10</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clone-Your-Octopress-to-Blog-From-Two-Places/">Clone Your Octopress to Blog From Two Places</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-Page/">GitHub Page</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/">H5</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSON/">JSON</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Octopress/">Octopress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cocoapods/">cocoapods</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS与H5交互/">iOS与H5交互</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/octopress/">octopress</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人博客/">个人博客</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个性化配置/">个性化配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/交互/">交互</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/同步/">同步</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安装/">安装</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/服务器/">服务器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/遇到的坑/">遇到的坑</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">awan tag</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Clone-Your-Octopress-to-Blog-From-Two-Places/" style="font-size: 10px;">Clone Your Octopress to Blog From Two Places</a> <a href="/tags/GitHub-Page/" style="font-size: 10px;">GitHub Page</a> <a href="/tags/H5/" style="font-size: 15px;">H5</a> <a href="/tags/JSON/" style="font-size: 10px;">JSON</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 15px;">Mac</a> <a href="/tags/Octopress/" style="font-size: 10px;">Octopress</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/cocoapods/" style="font-size: 10px;">cocoapods</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iOS与H5交互/" style="font-size: 15px;">iOS与H5交互</a> <a href="/tags/octopress/" style="font-size: 15px;">octopress</a> <a href="/tags/个人博客/" style="font-size: 10px;">个人博客</a> <a href="/tags/个性化配置/" style="font-size: 10px;">个性化配置</a> <a href="/tags/交互/" style="font-size: 15px;">交互</a> <a href="/tags/同步/" style="font-size: 10px;">同步</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/遇到的坑/" style="font-size: 10px;">遇到的坑</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tautan</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2017 GnodUxn<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
