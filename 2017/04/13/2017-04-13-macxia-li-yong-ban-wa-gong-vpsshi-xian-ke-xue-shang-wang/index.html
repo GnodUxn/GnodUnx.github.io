@@ -13,28 +13,12 @@
 <meta property="og:site_name" content="GnodUxn&#39;s Blog">
 <meta property="og:description" content="Mac下利用搬瓦工VPS实现科学上网">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/20160204185518833.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/20160204185846708.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20161121155527018-1135696125.jpg">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/20160204191017661.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/20160204191047052.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/20160204191618152.png">
-<meta property="og:image" content="http://img.blog.csdn.net/20160204191717231">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/20160204191934078.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/20160204192138050.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20161121160723190-1614906842.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20161121163859628-1669698799.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161051596-283512173.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161327206-2023687985.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161414534-1418731061.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161458800-2039233982.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161603612-1299046595.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161646940-1015572090.png">
-<meta property="og:updated_time" content="2017-09-23T08:29:51.000Z">
+<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/pexels-photo-593316.jpeg">
+<meta property="og:updated_time" content="2017-10-13T02:03:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac下利用搬瓦工VPS实现科学上网">
 <meta name="twitter:description" content="Mac下利用搬瓦工VPS实现科学上网">
-<meta name="twitter:image" content="http://oo6qj81tq.bkt.clouddn.com/20160204185518833.png">
+<meta name="twitter:image" content="http://oo6qj81tq.bkt.clouddn.com/pexels-photo-593316.jpeg">
     
 
     
@@ -232,6 +216,14 @@
             <section id="main"><article id="post-2017-04-13-macxia-li-yong-ban-wa-gong-vpsshi-xian-ke-xue-shang-wang" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
+            
+	
+		<img src="http://oo6qj81tq.bkt.clouddn.com/pexels-photo-593316.jpeg" class="article-banner" />
+	
+
+
+
+        
         
             <header class="article-header">
                 
@@ -298,9 +290,9 @@
 <p>####安装net-speeder过程：<br>Net-Speeder是一个linux软件，主要目的是为了解决丢包问题，实现TCP双倍发包流量，可以减少超时和提高下载速度。也就是同一个数据包发送两份，这样的话在服务器带宽充足情况下，丢包率会平方级降低。网络传输速度也会有所提升。</p>
 <ol>
 <li>还是通过远程登录服务器，输入密码后在终端输入<code>wget http://www.banwagong.me/tools/centos_net-speeder.sh</code>,成功后显示如下<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161327206-2023687985.png" alt="image"></li>
-<li>输入命令：<code>sh centos_net-speeder.sh</code> ，此时需要等待一段时间。可能会出现错误404，如图所示：<br> <img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161414534-1418731061.png" alt="image"><br> 原因是：搬瓦工的centos_net-speeder.sh文件中要去google下载一个net_speeder-v0.1.tar.gz的压缩包，而google的这个网址已经404了。<br><br> 解决方法：使用命令 <code>vi centos_net-speeder.sh</code><br><br> 进入如下界面，找到下图红框标注的位置：<br> <img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161458800-2039233982.png" alt="image"><br> 将原来的<code>http://net-speeder.googlecode.com/files/net_speeder-v0.1.tar.gz</code>替换为<code>http://coding.net/u/njzhenghao/p/download/git/raw/master/net_speeder-v0.1.tar.gz</code>，即上图框中的路径。然后保存退出。<br><br> 再此执行：<code>sh centos_net-speeder.sh</code>，这时就会出现下面的界面：<br> <img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161603612-1299046595.png" alt="image"></li>
+<li>输入命令：<code>sh centos_net-speeder.sh</code> ，此时需要等待一段时间。可能会出现错误404，如图所示：<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161414534-1418731061.png" alt="image"><br>原因是：搬瓦工的centos_net-speeder.sh文件中要去google下载一个net_speeder-v0.1.tar.gz的压缩包，而google的这个网址已经404了。<br><br> 解决方法：使用命令 <code>vi centos_net-speeder.sh</code><br><br> 进入如下界面，找到下图红框标注的位置：<br> <img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161458800-2039233982.png" alt="image"><br> 将原来的<code>http://net-speeder.googlecode.com/files/net_speeder-v0.1.tar.gz</code>替换为<code>http://coding.net/u/njzhenghao/p/download/git/raw/master/net_speeder-v0.1.tar.gz</code>，即上图框中的路径。然后保存退出。<br><br> 再此执行：<code>sh centos_net-speeder.sh</code>，这时就会出现下面的界面：<br> <img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161603612-1299046595.png" alt="image"></li>
 <li>输入<code>nohup /usr/local/net_speeder/net_speeder venet0 &quot;ip&quot; &gt;/dev/null 2&gt;&amp;1 &amp;</code> ，回车。</li>
-<li>最后你就可以试着<code>ping</code>一下google了<br> <img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161646940-1015572090.png" alt="image"><br> 这时你就会发现每条数据包的后面都会加一个（DUP！），此标志就说明流量包双倍发送，加速成功。</li>
+<li>最后你就可以试着<code>ping</code>一下google了<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161646940-1015572090.png" alt="image"><br>这时你就会发现每条数据包的后面都会加一个（DUP！），此标志就说明流量包双倍发送，加速成功。</li>
 <li>到此为止，所有的配置工作就已经做完，你可以打开Shadowsocks客户端（小飞机）输入你的ip、端口号和密码，然后就可以去国外的网站肆意驰骋了。</li>
 </ol>
 
@@ -404,7 +396,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/Road-in-the-sunrise.jpg)" alt="KVO实现原理" class="thumbnail-image"></span>
     
 </a>
 
@@ -423,7 +415,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/01_pod-best-animals.adapt.1900.1.jpg)" alt="Block那点事儿" class="thumbnail-image"></span>
     
 </a>
 
@@ -442,7 +434,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/pexels-photo-206660.jpeg)" alt="轻量级视图控制器" class="thumbnail-image"></span>
     
 </a>
 
@@ -461,7 +453,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/macbook-apple-imac-computer-39284.jpeg)" alt="Linux下配置Tomcat服务器" class="thumbnail-image"></span>
     
 </a>
 
@@ -480,7 +472,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/04/13/2017-04-13-macxia-li-yong-ban-wa-gong-vpsshi-xian-ke-xue-shang-wang/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/pexels-photo-593316.jpeg)" alt="Mac下利用搬瓦工VPS实现科学上网" class="thumbnail-image"></span>
     
 </a>
 
