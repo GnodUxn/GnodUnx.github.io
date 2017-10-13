@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://images2015.cnblogs.com/blog/966882/201609/966882-20160908095920801-577871005.png">
 <meta property="og:image" content="http://images2015.cnblogs.com/blog/966882/201609/966882-20160907140426629-424077421.png">
 <meta property="og:image" content="http://images2015.cnblogs.com/blog/966882/201609/966882-20160907143559957-776485845.png">
-<meta property="og:updated_time" content="2017-09-28T06:27:38.000Z">
+<meta property="og:updated_time" content="2017-10-13T02:31:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cocoapods安装">
 <meta name="twitter:description" content="cocoapods安装">
@@ -286,11 +286,10 @@
 <ul>
 <li><p>新建一个项目，在终端cd到该项目的根目录下，使用<code>vim Podfile</code> ，新建一个名为Podfile的文件，在键盘上按 i 进入编辑模式，如图：<br><img src="http://images2015.cnblogs.com/blog/966882/201609/966882-20160907135350332-1976990176.png" alt="image"><br>pod版本1.0.1以后，需要输入以下格式，并添加需要的库并保存，这里是MBProgressHUD：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">platform :ios,&apos;8.0&apos;</div><div class="line">target &apos;项目名&apos; do</div><div class="line">pod &apos;MBProgressHUD&apos;, &apos;~&gt; 1.0.0&apos;</div><div class="line">end</div></pre></td></tr></table></figure>
-</li>
-</ul>
 <p>按esc键退出编辑模式，然后按住shift键，并且输入“ ：”号进入vim命令模式，然后在冒号后边输入wq，回车，退出编辑。</p>
-<ul>
-<li>终端输入：<code>pod install</code> ，等几分钟后就会出现下面的界面<br><img src="http://images2015.cnblogs.com/blog/966882/201609/966882-20160908095920801-577871005.png" alt="image"><br>到这里就说明项目里已经添加了pod，重新打开项目的目录会看到多出一个PodTest.xcworkspace文件，现在打开项目不是点击 PodTest.xodeproj了，而是点击 PodTest.xcworkspace。项目结构就会变为：<br><img src="http://images2015.cnblogs.com/blog/966882/201609/966882-20160907140426629-424077421.png" alt="image"></li>
+</li>
+<li><p>终端输入：<code>pod install</code> ，等几分钟后就会出现下面的界面<br><img src="http://images2015.cnblogs.com/blog/966882/201609/966882-20160908095920801-577871005.png" alt="image"><br>到这里就说明项目里已经添加了pod，重新打开项目的目录会看到多出一个PodTest.xcworkspace文件，现在打开项目不是点击 PodTest.xodeproj了，而是点击 PodTest.xcworkspace。项目结构就会变为：<br><img src="http://images2015.cnblogs.com/blog/966882/201609/966882-20160907140426629-424077421.png" alt="image"></p>
+</li>
 <li>如果需要导入多个三方库只需在终端cd到项目根目录，再次使用 <code>vim Podfile</code> ，编辑之前的Podfile文件，修改完了Podfile文件，需要重新执行一次<code>pod install</code>命令。</li>
 <li>补充： 使用：<code>pod search &lt;三方库名&gt;</code> 来查找最新的三方库，如：<code>pod search AFNetWorking</code><br><img src="http://images2015.cnblogs.com/blog/966882/201609/966882-20160907143559957-776485845.png" alt="image"><br>拷贝圈中代码，按 q 退出，cd到项目目录，使用$ vim Podfile ，添加pod ‘AFNetworking’, ‘~&gt; 3.1.0’ ，重新执行一次pod install命令，就可以将最新的库添加到项目中。</li>
 </ul>
