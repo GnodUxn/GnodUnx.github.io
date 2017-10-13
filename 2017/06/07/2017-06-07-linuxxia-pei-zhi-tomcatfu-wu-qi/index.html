@@ -14,7 +14,7 @@
 <meta property="og:description" content="Linux下配置Tomcat服务器">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/macbook-apple-imac-computer-39284.jpeg">
-<meta property="og:updated_time" content="2017-10-13T01:50:31.000Z">
+<meta property="og:updated_time" content="2017-10-13T04:11:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux下配置Tomcat服务器">
 <meta name="twitter:description" content="Linux下配置Tomcat服务器">
@@ -265,12 +265,11 @@
         
             
             <p>VPS买了一段时间了，平时只是用来FQ上网（如果想要购买<code>VPS</code>来FQ上国外网站，请参考：<a href="http://wanxudong.top/blog/2017/04/13/macxia-li-yong-ban-wa-gong-vpsshi-xian-ke-xue-shang-wang/" target="_blank" rel="external">Mac下利用搬瓦工VPS实现科学上网</a>），白白浪费了大好资源。今天就来说说在<code>VPS</code>上搭建<code>Tomcat</code>的过程以及遇到的坑。<a id="more"></a></p>
-<p>###前提</p>
-<ul>
+<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><ul>
 <li><code>VPS</code>已安装<code>Linux</code>系统（文中所有操作是在<code>Centos 6 x86_64 minimal</code>系统下）</li>
 <li>本地安装<code>SecureCRT</code>（文中本地使用<code>Mac OS X EI Capitan</code>系统，下面会详细介绍<code>SecureCRT</code>安装过程）</li>
 </ul>
-<p>###安装 SecureCRT<br><code>SecureCRT</code>是一款支持<code>SSH</code>（<code>SSH1</code>和<code>SSH2</code>）的终端仿真程序。</p>
+<h3 id="安装-SecureCRT"><a href="#安装-SecureCRT" class="headerlink" title="安装 SecureCRT"></a>安装 SecureCRT</h3><p><code>SecureCRT</code>是一款支持<code>SSH</code>（<code>SSH1</code>和<code>SSH2</code>）的终端仿真程序。</p>
 <p>这里提供8.0.4版本的百度云盘下载<a href="https://pan.baidu.com/s/1o8DElE6" target="_blank" rel="external">地址</a>，提取码：<code>pquq</code>。更多版本可以到<a href="http://xclient.info" target="_blank" rel="external">Xclinet</a>上下载，<code>Xclinet</code>上有很多免费的<code>Mac</code>软件及破解方法，非常方便。</p>
 <p><code>Tips:</code> <code>Xclinet</code>上下载的软件解压密码都是<code>xclient.info</code>。</p>
 <ul>
@@ -280,7 +279,7 @@
 <li>正常运行应用程序，在弹出的注册页面点击 “Continue”，进入下一个界面，点击左下角的 <code>Enter License Manually</code>，将 <code>README.md</code> 中的激活码依次填入，安装成功。</li>
 </ul>
 <p>安装成功后，就可以通过<code>SecureCRT</code>远程登录操作服务器。</p>
-<p>###安装 JDK<br>安装<code>Tomcat</code>首先需要先配置<code>JDK</code> ，<code>JDK</code>下载<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="external">地址</a>。由于是为<code>VPS</code>安装<code>JDK</code>，所以需要登录远程服务器，创建一个目录用来下载安装<code>JDK</code>。</p>
+<h3 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h3><p>安装<code>Tomcat</code>首先需要先配置<code>JDK</code> ，<code>JDK</code>下载<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="external">地址</a>。由于是为<code>VPS</code>安装<code>JDK</code>，所以需要登录远程服务器，创建一个目录用来下载安装<code>JDK</code>。</p>
 <ul>
 <li>进入<code>JDK</code>下载地址，选择和cpu位数对应的<code>tar.gz</code>包。点击<code>Accept License Agreement</code>，复制链接地址。</li>
 <li>登录远程服务器，<code>cd</code>到指定目录。</li>
@@ -293,8 +292,7 @@
 <p>还可以使用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate --no-cookies --header &quot;Cookie: oraclelicense=accept-securebackup-cookie&quot; http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz</div></pre></td></tr></table></figure>
 <p>下载好的目录在 <code>/java/jdk</code>，重复第四步解压。</p>
-<p>####配置 JDK</p>
-<ul>
+<h4 id="配置-JDK"><a href="#配置-JDK" class="headerlink" title="配置 JDK"></a>配置 JDK</h4><ul>
 <li><code>cd ~</code>，到root路径下配置<code>.bashrc</code>文件</li>
 <li><code>vi .bashrc</code>，编辑<code>.bashrc</code>，在文件中<code># .bashrc</code>下面添加以下三行代码，只需修改第一行<code>JAVA_HOME=</code>后的路径为刚刚解压的<code>JDK</code>路径即可。</li>
 </ul>
@@ -304,7 +302,7 @@
 <li><code>reboot</code>，重启系统。稍等一会儿重新连接远程服务器。</li>
 <li><code>Java -version</code>，查看<code>Java</code>版本，如果可以看到版本号就表示配置成功了。下面开始安装Tomcat。</li>
 </ul>
-<p>###安装 Tomcat<br><code>Tomcat</code><a href="http://tomcat.apache.org/download-90.cgi" target="_blank" rel="external">下载地址</a>，和<code>JDK</code>的下载方式一样，这里还是下载<code>tar.gz</code>包。</p>
+<h3 id="安装-Tomcat"><a href="#安装-Tomcat" class="headerlink" title="安装 Tomcat"></a>安装 Tomcat</h3><p><code>Tomcat</code><a href="http://tomcat.apache.org/download-90.cgi" target="_blank" rel="external">下载地址</a>，和<code>JDK</code>的下载方式一样，这里还是下载<code>tar.gz</code>包。</p>
 <ul>
 <li>在下载地址<code>Binary Distributions</code>–&gt;<code>Core</code>中选择<code>tar.gz (pgp, md5, sha1)</code>复制链接地址。</li>
 <li><code>cd</code>到指定目录。</li>
@@ -316,7 +314,7 @@
 <ul>
 <li>验证是否开启服务，在浏览器输入<code>http://服务器ip:8080</code>，如果出现以下界面代表服务已经启动。<br><img src="http://oo6qj81tq.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-06-07%20%E4%B8%8B%E5%8D%884.07.41.png" alt="image"></li>
 </ul>
-<p>###上传文件<br>前期做了一大堆安装配置，其实我想要做的只是把本地写的Web demo跑到外网上去。这里我使用<code>rz</code>命令行上传。Linux中rz命令和sz命令都可用于文件传输。</p>
+<h3 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h3><p>前期做了一大堆安装配置，其实我想要做的只是把本地写的Web demo跑到外网上去。这里我使用<code>rz</code>命令行上传。Linux中rz命令和sz命令都可用于文件传输。</p>
 <p><code>sz</code>：将选定的文件<code>send</code>(发送)到本地机器。</p>
 <p><code>rz</code>：运行该命令会弹出一个文件选择窗口，从本地选择文件上传到<code>Linux</code>服务器。</p>
 <p>首先借助<code>securtCRT</code>登录服务器执行以下操作：</p>
@@ -325,8 +323,7 @@
 <p><code>例如：</code> 这里我要上传的是一个名为<code>pet</code>的<code>Web</code>项目(<code>pet</code>目录下有<code>index.html</code>、<code>source</code>、<code>css</code>)，我只需在本地压缩。然后使用<code>rz</code>上传到<code>ROOT</code>目录下，用<code>unzip pet.zip</code>解压，最后使用<code>rm -rf pet.zip</code>删除压缩包即可。访问<code>Web</code>项目根文件的路径规则为: <code>http://服务器ip:8080/pet/index.html</code>。</p>
 <p>当然，上传文件还可以通过<code>SFTP</code>、<code>FTP</code>、<code>SCP</code>等方式，之后会补充完善其他上传方式。</p>
 <hr>
-<p>###参考文章：</p>
-<ul>
+<h3 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h3><ul>
 <li><a href="http://blog.csdn.net/qq_26819733/article/details/51925582" target="_blank" rel="external">Linux安装JDK </a></li>
 <li><a href="http://blog.csdn.net/qq_26819733/article/details/51926036" target="_blank" rel="external">Linux安装Tomcat9 </a></li>
 <li><a href="http://www.tuicool.com/articles/FnAvEz3" target="_blank" rel="external">Linux下使用wget 命令下载JDK7的方法</a></li>

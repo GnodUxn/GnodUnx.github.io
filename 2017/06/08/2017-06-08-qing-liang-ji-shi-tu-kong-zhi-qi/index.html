@@ -14,7 +14,7 @@
 <meta property="og:description" content="轻量级视图控制器">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/pexels-photo-206660.jpeg">
-<meta property="og:updated_time" content="2017-10-13T01:43:46.000Z">
+<meta property="og:updated_time" content="2017-10-13T04:16:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="轻量级视图控制器">
 <meta name="twitter:description" content="轻量级视图控制器">
@@ -262,8 +262,7 @@
             <p><strong>本文翻译自：<a href="https://www.objc.io/issues/1-view-controllers/lighter-view-controllers/" target="_blank" rel="external">Lighter View Controllers </a></strong></p>
 <p>在iOS项目中视图控制器通常是最大的文件，它们通常包含许多非必要的代码。视图控制器几乎总是代码里最少被复用的部分。接下来我们将使用技巧使视图控制器瘦身、复用代码、并把代码放到适当的地方。</p>
 <p>此问题的<a href="https://github.com/objcio/issue-1-lighter-view-controllers" target="_blank" rel="external">示例代码</a>在GitHub上。<a id="more"></a></p>
-<p>###将数据源和其他协议分开</p>
-<p>为控制器瘦身最强有力技巧之一是将<code>UITableViewDataSource</code>部分的代码移动到它自己的类中。如果你不止一次这样做过了，你将会发现一种特有的模式并提取出可复用的代码。</p>
+<h3 id="将数据源和其他协议分开"><a href="#将数据源和其他协议分开" class="headerlink" title="将数据源和其他协议分开"></a>将数据源和其他协议分开</h3><p>为控制器瘦身最强有力技巧之一是将<code>UITableViewDataSource</code>部分的代码移动到它自己的类中。如果你不止一次这样做过了，你将会发现一种特有的模式并提取出可复用的代码。</p>
 <p>举个例子，在我们的示例程序中，有一个名为<code>PhotosViewController</code>的类包含以下方法：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"># pragma mark Pragma </div><div class="line"></div><div class="line">- (Photo*)photoAtIndexPath:(NSIndexPath*)indexPath &#123;</div><div class="line">    return photos[(NSUInteger)indexPath.row];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (NSInteger)tableView:(UITableView*)tableView </div><div class="line"> numberOfRowsInSection:(NSInteger)section &#123;</div><div class="line">    return photos.count;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (UITableViewCell*)tableView:(UITableView*)tableView </div><div class="line">        cellForRowAtIndexPath:(NSIndexPath*)indexPath &#123;</div><div class="line">    PhotoCell* cell = [tableView dequeueReusableCellWithIdentifier:PhotoCellIdentifier </div><div class="line">                                                      forIndexPath:indexPath];</div><div class="line">    Photo* photo = [self photoAtIndexPath:indexPath];</div><div class="line">    cell.label.text = photo.name;</div><div class="line">    return cell;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这些代码中多次用到了数组，其中一些特定用于视图控制器管理的照片。所以，我们试着将与数组相关的代码移动到它自己的类中。我们使用 block 来为 cell 设置数据，也可以使用代理，依据你自己的使用习惯。</p>
@@ -274,32 +273,25 @@
 <p>最方便的是我们可以分开测试这个类，而且不用担心重写这些代码。如果你使用数组以外的其它东西，这个原则同样适用。</p>
 <p>在我们今年所做的一款应用中，大量使用了Core Data。我们创建了一个类似的类，但并不是用数组作为支持，而是一个获取结果的视图控制器。它实现了所有更新动画的逻辑，并做了组头和删除。然后，你可以创建此对象的实例，并为其提供一个获取请求和一个用于设置 cell 的 block ，其余的事将会被处理的很好。</p>
 <p>此外，这种方式也可以扩展到其它协议。显而易见的是<code>UICollectionViewDataSource</code>。这样将给你带来极大的便利，例如：如果在开发中的某个节点上你决定使用<code>UITableView</code>来代替<code>UICollectionView</code>，这时你会发现很难改变视图控制器中的代码。你甚至可以让你的数据源支持两种协议。</p>
-<p>###将业务逻辑放到Model中</p>
-<p>这是一段从其它应用程序中拿来的在视图控制器中搜寻用户活跃优先级的实例代码。</p>
+<h3 id="将业务逻辑放到Model中"><a href="#将业务逻辑放到Model中" class="headerlink" title="将业务逻辑放到Model中"></a>将业务逻辑放到Model中</h3><p>这是一段从其它应用程序中拿来的在视图控制器中搜寻用户活跃优先级的实例代码。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">- (void)loadPriorities &#123;</div><div class="line">  NSDate* now = [NSDate date];</div><div class="line">  NSString* formatString = @&quot;startDate &lt;= %@ AND endDate &gt;= %@&quot;;</div><div class="line">  NSPredicate* predicate = [NSPredicate predicateWithFormat:formatString, now, now];</div><div class="line">  NSSet* priorities = [self.user.priorities filteredSetUsingPredicate:predicate];</div><div class="line">  self.priorities = [priorities allObjects];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>然而将这段代码添加到<code>User</code>类的分类中会更加清晰，然后<code>View Controller.m</code>看起来是这个样子：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- (void)loadPriorities &#123;</div><div class="line">  self.priorities = [self.user currentPriorities];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>在<code>User+Extensions.m</code>里</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- (NSArray*)currentPriorities &#123;</div><div class="line">  NSDate* now = [NSDate date];</div><div class="line">  NSString* formatString = @&quot;startDate &lt;= %@ AND endDate &gt;= %@&quot;;</div><div class="line">  NSPredicate* predicate = [NSPredicate predicateWithFormat:formatString, now, now];</div><div class="line">  return [[self.priorities filteredSetUsingPredicate:predicate] allObjects];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>一些代码不能轻易移动到 Model 中，但仍然与模型代码相关联，为此，我们可以使用存储类：</p>
-<p>###创建缓存模型</p>
-<p>在我们示例程序的第一个版本中，有些代码是从文件中加载数据并解析。这些代码在视图控制器中：</p>
+<h3 id="创建缓存模型"><a href="#创建缓存模型" class="headerlink" title="创建缓存模型"></a>创建缓存模型</h3><p>在我们示例程序的第一个版本中，有些代码是从文件中加载数据并解析。这些代码在视图控制器中：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">- (void)readArchive &#123;</div><div class="line">    NSBundle* bundle = [NSBundle bundleForClass:[self class]];</div><div class="line">    NSURL *archiveURL = [bundle URLForResource:@&quot;photodata&quot;</div><div class="line">                                 withExtension:@&quot;bin&quot;];</div><div class="line">    NSAssert(archiveURL != nil, @&quot;Unable to find archive in bundle.&quot;);</div><div class="line">    NSData *data = [NSData dataWithContentsOfURL:archiveURL</div><div class="line">                                         options:0</div><div class="line">                                           error:NULL];</div><div class="line">    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];</div><div class="line">    _users = [unarchiver decodeObjectOfClass:[NSArray class] forKey:@&quot;users&quot;];</div><div class="line">    _photos = [unarchiver decodeObjectOfClass:[NSArray class] forKey:@&quot;photos&quot;];</div><div class="line">    [unarchiver finishDecoding];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>视图控制器本不应该知道这些，为此我们创建了一个存储类来做这些。通过将这些代码分离，我们可以复用这些代码、分别测试并让视图控制器更轻量。存储类可以关心数据的加载、缓存、设置数据库堆栈。这个存储类也经常被称为服务层或仓库。</p>
-<p>###将网络处理逻辑放到Model层</p>
-<p>这与上述主题十分相似：不要在视图控制器中做网络处理逻辑。而是将它封装到不同的类中。你的视图控制器之后可以通过调用方法处理回调（例如：完成的block）。最棒的是你可以在这个类中执行所有缓存和错误处理。</p>
-<p>###将创建UI的代码放到View层</p>
-<p>在视图控制器中不应该创建复杂的视图层次结构。可以使用 Interface Builder 或者将 UI 层封装到 UIView 子类中。例如，如果你创建自己的时间选择器，将其单独封装成 <code>DatePickerView</code> 比将代码写到视图控制器中更说得通。这样又增加了可重用性和简单性。</p>
+<h3 id="将网络处理逻辑放到Model层"><a href="#将网络处理逻辑放到Model层" class="headerlink" title="将网络处理逻辑放到Model层"></a>将网络处理逻辑放到Model层</h3><p>这与上述主题十分相似：不要在视图控制器中做网络处理逻辑。而是将它封装到不同的类中。你的视图控制器之后可以通过调用方法处理回调（例如：完成的block）。最棒的是你可以在这个类中执行所有缓存和错误处理。</p>
+<h3 id="将创建UI的代码放到View层"><a href="#将创建UI的代码放到View层" class="headerlink" title="将创建UI的代码放到View层"></a>将创建UI的代码放到View层</h3><p>在视图控制器中不应该创建复杂的视图层次结构。可以使用 Interface Builder 或者将 UI 层封装到 UIView 子类中。例如，如果你创建自己的时间选择器，将其单独封装成 <code>DatePickerView</code> 比将代码写到视图控制器中更说得通。这样又增加了可重用性和简单性。</p>
 <p>如果你喜欢用 Interface Builder ，也可以这么做。有些人认为只能将其用于视图控制器，但你也可以使用自定义的 view 加载单独的 nib 文件。在我们的示例程序中，我们创建了一个 <code>PhotoCell.xib</code> 来包含照片 cell 的布局。<br><img src="https://www.objc.io/images/issue-1/photocell-655ccb15.png" alt="image"></p>
 <p>正如你所看到的，我们为这个自定义 view 创建属性并将它们关联到特定的 UIView 子类上（在这个 xib 中我们并没有使用 File’s Owner 对象）。这个技巧对于其它自定义控件也十分便利。</p>
-<p>###通信</p>
-<p>另外一件经常发生在视图控制器中事是与其它 Controller、Model、View之间的通信。虽然这是视图控制器应该做的事，也是我们想尽可能用少量代码去实现的。</p>
+<h3 id="通信"><a href="#通信" class="headerlink" title="通信"></a>通信</h3><p>另外一件经常发生在视图控制器中事是与其它 Controller、Model、View之间的通信。虽然这是视图控制器应该做的事，也是我们想尽可能用少量代码去实现的。</p>
 <p>这里有许多很好解释的技巧对于视图控制器和模型之间的通信（例如 KVO 和 捕获结果控制器），然而视图控制器之间的通信往往不太清楚。</p>
 <p>我们经常遇到某个视图控制器有一些状态并与其它多个视图控制器通讯的问题。通常，将这个状态放到单独的对象中并将其传递给其它视图控制器然后观察和修改这些状态是说的通的。它的优点是状态被放到一个地方，我们最终不会陷入嵌套的委托回调。这是个复杂的问题，今后我们可能把这个问题全部归功于此。</p>
-<p>###结论</p>
-<p>我们看到了一些让视图控制器变轻的技巧。但我们不会尽可能随时随地使用这些技巧，我们只有一个目标：编写可维护的代码。通过了解这些模式，我们有更多的机会避免笨重的视图控制器，并使其更清晰。</p>
-<p>###延伸阅读</p>
-<ul>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>我们看到了一些让视图控制器变轻的技巧。但我们不会尽可能随时随地使用这些技巧，我们只有一个目标：编写可维护的代码。通过了解这些模式，我们有更多的机会避免笨重的视图控制器，并使其更清晰。</p>
+<h3 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h3><ul>
 <li><a href="http://developer.apple.com/library/ios/#featuredarticles/ViewControllerPGforiPhoneOS/BasicViewControllers/BasicViewControllers.html" target="_blank" rel="external">View Controller Programming Guide for iOS</a></li>
 <li><a href="http://developer.apple.com/library/mac/#documentation/General/Conceptual/DevPedia-CocoaCore/ControllerObject.html" target="_blank" rel="external">Cocoa Core Competencies: Controller Object</a></li>
 <li><a href="http://subjective-objective-c.blogspot.de/2011/08/writing-high-quality-view-controller.html" target="_blank" rel="external">Writing high quality view controllers</a></li>
