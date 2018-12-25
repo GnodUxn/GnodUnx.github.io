@@ -13,14 +13,14 @@
 <meta property="og:site_name" content="GnodUxn&#39;s Blog">
 <meta property="og:description" content="iOS与H5交互遇到的坑">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/882F1477-38A8-450B-83C2-56DEF4E495DC.png">
+<meta property="og:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/882F1477-38A8-450B-83C2-56DEF4E495DC.png">
 <meta property="og:image" content="http://images2015.cnblogs.com/blog/966882/201610/966882-20161021130346513-2056362597.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/B165FB6C-27D4-4003-95C3-93CA32565FCB.png">
-<meta property="og:updated_time" content="2017-10-13T02:31:05.000Z">
+<meta property="og:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/B165FB6C-27D4-4003-95C3-93CA32565FCB.png">
+<meta property="og:updated_time" content="2018-12-25T15:27:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS与H5交互遇到的坑">
 <meta name="twitter:description" content="iOS与H5交互遇到的坑">
-<meta name="twitter:image" content="http://oo6qj81tq.bkt.clouddn.com/882F1477-38A8-450B-83C2-56DEF4E495DC.png">
+<meta name="twitter:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/882F1477-38A8-450B-83C2-56DEF4E495DC.png">
     
 
     
@@ -259,7 +259,7 @@
         
             
             <p>之前的博客写过使用<javascriptcore javascriptcore.h="">库来实现与H5的交互，但是在项目中还是遇到了一些不得不踩的坑。在这里将我遇到的问题以及参考网上几位大神的解决方案列举出来，如果有更好的办法，欢迎讨论指正。在阅读本博客前，请参阅我之前的<a href="http://www.cnblogs.com/wanxudong/p/5581367.html" target="_blank" rel="external">iOS与H5交互</a>。<a id="more"></a></javascriptcore></p>
-<p>###问题一<br>在webView中加载H5界面，webView中的H5一级界面可以轻松实现oc与js方法互调，但如果在H5界面上进入二级界面，二级界面中再使用之前方法来交互就会失效。如图：左图为H5一级界面，右图为二级界面。<br><img src="http://oo6qj81tq.bkt.clouddn.com/882F1477-38A8-450B-83C2-56DEF4E495DC.png" alt="image"></p>
+<h3 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h3><p>在webView中加载H5界面，webView中的H5一级界面可以轻松实现oc与js方法互调，但如果在H5界面上进入二级界面，二级界面中再使用之前方法来交互就会失效。如图：左图为H5一级界面，右图为二级界面。<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/882F1477-38A8-450B-83C2-56DEF4E495DC.png" alt="image"></p>
 <p>解决办法：</p>
 <ul>
 <li><p>第一步：在控制器中声明两个变量，isNotFirstLoad用来记录webView是否是第一次加载网页；loadCount计数器，用来记录网页转跳次数，做返回处理。<img src="http://images2015.cnblogs.com/blog/966882/201610/966882-20161021130346513-2056362597.png" alt="image"></p>
@@ -276,7 +276,7 @@
 <p>返回按钮点击事件代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> *  返回按钮点击事件</div><div class="line"> */</div><div class="line">- (void)backClick</div><div class="line">&#123;</div><div class="line">    if (loadCount == 1) &#123; // pop到上级VC</div><div class="line">        [self.navigationController popViewControllerAnimated:YES];</div><div class="line">    &#125;else&#123; // 如果计数器为2,重新加载一级界面的url</div><div class="line">        NSURL *url = [NSURL URLWithString:self.url];</div><div class="line">        NSURLRequest *request = [NSURLRequest requestWithURL:url];</div><div class="line">        [self.webView loadRequest:request];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>到此这个问题算是解决了。</p>
-<p>###问题二<br>当H5界面中嵌套视频，在用手机横屏播放视频，点击右上角完成按钮退出播放界面的时候，会出现导航栏上移，与状态栏重合的bug。如图：<br><img src="http://oo6qj81tq.bkt.clouddn.com/B165FB6C-27D4-4003-95C3-93CA32565FCB.png" alt="image"><br>左图为正常进入H5界面的样子，点击视频播放按钮，进入视频播放界面，打开手机的竖排方向锁定，在手机横屏时候播放器会自动横屏播放，这时点击播放起左上角完成按钮活着右下角全屏按钮退出播放界面就会出现右图的bug，导航栏会向上移动，与状态栏重合。</p>
+<h3 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h3><p>当H5界面中嵌套视频，在用手机横屏播放视频，点击右上角完成按钮退出播放界面的时候，会出现导航栏上移，与状态栏重合的bug。如图：<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/B165FB6C-27D4-4003-95C3-93CA32565FCB.png" alt="image"><br>左图为正常进入H5界面的样子，点击视频播放按钮，进入视频播放界面，打开手机的竖排方向锁定，在手机横屏时候播放器会自动横屏播放，这时点击播放起左上角完成按钮活着右下角全屏按钮退出播放界面就会出现右图的bug，导航栏会向上移动，与状态栏重合。</p>
 <p><strong>解决方法：</strong></p>
 <ul>
 <li>第一步：在AppDelegate.h中增加一个属性值，用来设置是否允许横屏。代码如下：</li>
@@ -398,7 +398,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/09/23/2017-09-23-black-mirror-white-bear-review/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/AAE54A5D-E51F-4F55-BBF6-7D7D67EB04AB.png)" alt="Black Mirror - White Bear Review" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/AAE54A5D-E51F-4F55-BBF6-7D7D67EB04AB.png)" alt="Black Mirror - White Bear Review" class="thumbnail-image"></span>
     
 </a>
 
@@ -417,7 +417,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/Road-in-the-sunrise.jpg)" alt="KVO实现原理" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/Road-in-the-sunrise.jpg)" alt="KVO实现原理" class="thumbnail-image"></span>
     
 </a>
 
@@ -436,7 +436,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/01_pod-best-animals.adapt.1900.1.jpg)" alt="Block那点事儿" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/01_pod-best-animals.adapt.1900.1.jpg)" alt="Block那点事儿" class="thumbnail-image"></span>
     
 </a>
 
@@ -455,7 +455,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/pexels-photo-206660.jpeg)" alt="轻量级视图控制器" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/pexels-photo-206660.jpeg)" alt="轻量级视图控制器" class="thumbnail-image"></span>
     
 </a>
 
@@ -474,7 +474,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/macbook-apple-imac-computer-39284.jpeg)" alt="Linux下配置Tomcat服务器" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/macbook-apple-imac-computer-39284.jpeg)" alt="Linux下配置Tomcat服务器" class="thumbnail-image"></span>
     
 </a>
 

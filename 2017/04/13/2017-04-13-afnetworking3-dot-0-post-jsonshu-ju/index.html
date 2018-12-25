@@ -13,12 +13,12 @@
 <meta property="og:site_name" content="GnodUxn&#39;s Blog">
 <meta property="og:description" content="AFNetworking3.0 Post JSON数据">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images2015.cnblogs.com/blog/966882/201612/966882-20161223161058589-1530535564.png">
-<meta property="og:updated_time" content="2017-10-13T02:31:31.000Z">
+<meta property="og:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20161223161058589-1530535564.png">
+<meta property="og:updated_time" content="2018-12-25T15:17:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AFNetworking3.0 Post JSON数据">
 <meta name="twitter:description" content="AFNetworking3.0 Post JSON数据">
-<meta name="twitter:image" content="http://images2015.cnblogs.com/blog/966882/201612/966882-20161223161058589-1530535564.png">
+<meta name="twitter:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20161223161058589-1530535564.png">
     
 
     
@@ -259,7 +259,7 @@
             <p>使用AFNetworking3.0后网络请求由原来的AFHTTPRequestOperationManager变为AFHTTPSessionManager。一般的Post请求变成了这样：<a id="more"></a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">NSMutableDictionary *params = [NSMutableDictionary dictionary];</div><div class="line">params[@&quot;phoneNumber&quot;] = @&quot;18000000000&quot;;</div><div class="line">params[@&quot;password&quot;] = @&quot;123&quot;;</div><div class="line"></div><div class="line">AFHTTPSessionManager *session = [AFHTTPSessionManager manager];</div><div class="line">[session POST:@&quot;&quot; parameters:@&quot;&quot; progress:params success:nil failure:nil];</div></pre></td></tr></table></figure>
 <p>最近后台要求我们提交post请求使用JSON格式，如{“password”:”123”,”phoneNumber”:”18000000001”}；</p>
-<p>使用原有请求方式请求报错error:Error Domain=com.alamofire.error.serialization.response Code=-1011 “Request failed: service unavailable (503)”。如图：<br><img src="http://images2015.cnblogs.com/blog/966882/201612/966882-20161223161058589-1530535564.png" alt="image"><br>无意间发现MJExtension中有将字典转为JSON字符串的方法[params mj_JSONString]，然后心里默默称赞了杰哥的强大，看了下转JSON的源码，以为如此简单就可以解决问题。事实证明我还是too young too simple，控制台依旧输出错误error:Error Domain=NSCocoaErrorDomain Code=3840 “No value for key in object around character 7998.”。</p>
+<p>使用原有请求方式请求报错error:Error Domain=com.alamofire.error.serialization.response Code=-1011 “Request failed: service unavailable (503)”。如图：<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20161223161058589-1530535564.png" alt="image"><br>无意间发现MJExtension中有将字典转为JSON字符串的方法[params mj_JSONString]，然后心里默默称赞了杰哥的强大，看了下转JSON的源码，以为如此简单就可以解决问题。事实证明我还是too young too simple，控制台依旧输出错误error:Error Domain=NSCocoaErrorDomain Code=3840 “No value for key in object around character 7998.”。</p>
 <p>无奈之下赶紧到github上翻看AFNetworking的文档，发现有这样一句话</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">JSON Parameter Encoding</div><div class="line">[[AFJSONRequestSerializer serializer] requestWithMethod:@&quot;POST&quot; URLString:URLString parameters:parameters error:nil];</div><div class="line"></div><div class="line">POST http://example.com/</div><div class="line">Content-Type: application/json</div><div class="line">&#123;&quot;foo&quot;: &quot;bar&quot;, &quot;baz&quot;: [1,2,3]&#125;</div></pre></td></tr></table></figure>
 <p>立马将这句话加入到网络请求当中：（<strong>方法一</strong>）</p>
@@ -377,7 +377,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/09/23/2017-09-23-black-mirror-white-bear-review/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/AAE54A5D-E51F-4F55-BBF6-7D7D67EB04AB.png)" alt="Black Mirror - White Bear Review" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/AAE54A5D-E51F-4F55-BBF6-7D7D67EB04AB.png)" alt="Black Mirror - White Bear Review" class="thumbnail-image"></span>
     
 </a>
 
@@ -396,7 +396,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/Road-in-the-sunrise.jpg)" alt="KVO实现原理" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/Road-in-the-sunrise.jpg)" alt="KVO实现原理" class="thumbnail-image"></span>
     
 </a>
 
@@ -415,7 +415,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/01_pod-best-animals.adapt.1900.1.jpg)" alt="Block那点事儿" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/01_pod-best-animals.adapt.1900.1.jpg)" alt="Block那点事儿" class="thumbnail-image"></span>
     
 </a>
 
@@ -434,7 +434,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/pexels-photo-206660.jpeg)" alt="轻量级视图控制器" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/pexels-photo-206660.jpeg)" alt="轻量级视图控制器" class="thumbnail-image"></span>
     
 </a>
 
@@ -453,7 +453,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/macbook-apple-imac-computer-39284.jpeg)" alt="Linux下配置Tomcat服务器" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/macbook-apple-imac-computer-39284.jpeg)" alt="Linux下配置Tomcat服务器" class="thumbnail-image"></span>
     
 </a>
 

@@ -13,12 +13,12 @@
 <meta property="og:site_name" content="GnodUxn&#39;s Blog">
 <meta property="og:description" content="Mac下利用搬瓦工VPS实现科学上网">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/pexels-photo-593316.jpeg">
-<meta property="og:updated_time" content="2017-10-13T02:03:05.000Z">
+<meta property="og:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/pexels-photo-593316.jpeg">
+<meta property="og:updated_time" content="2018-12-25T15:40:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac下利用搬瓦工VPS实现科学上网">
 <meta name="twitter:description" content="Mac下利用搬瓦工VPS实现科学上网">
-<meta name="twitter:image" content="http://oo6qj81tq.bkt.clouddn.com/pexels-photo-593316.jpeg">
+<meta name="twitter:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/pexels-photo-593316.jpeg">
     
 
     
@@ -218,7 +218,7 @@
         
             
 	
-		<img src="http://oo6qj81tq.bkt.clouddn.com/pexels-photo-593316.jpeg" class="article-banner" />
+		<img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/pexels-photo-593316.jpeg" class="article-banner" />
 	
 
 
@@ -264,35 +264,55 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>###Step 1：购买搬瓦工VPS<br>登录<a href="https://bwh1.net/cart.php?a=confproduct&amp;i=1" target="_blank" rel="external">搬瓦工官网</a><a id="more"></a></p>
-<ol>
-<li><strong>选择套餐</strong><br><img src="http://oo6qj81tq.bkt.clouddn.com/20160204185518833.png" alt="image"><br>套餐选择，一般只是用来上网的话用19.99美元一年的就比较合适，每月550G带宽足够，可根据个人用途选择套餐。搬瓦工VPSLocation，一共有洛杉矶、佛罗里达、荷兰、凤凰城4个数据中心，我们可以根据需要选择，一般我们会选择洛杉矶数据中心，因为速度比较快。具体对比信息可以去官网上找。</li>
-<li><strong>确认订单</strong><br><img src="http://oo6qj81tq.bkt.clouddn.com/20160204185846708.png" alt="image"></li>
-<li><strong>支付订单</strong><br>支付之前，需要注册账号，需要完善相应的信息<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121155527018-1135696125.jpg" alt="image"><br>这里比较关键，我们输入个人信息，英文或者拼音都可以，邮箱是新的，密码需要正确，国家不要乱写，选择自己的国家，然后地区，路段都可以任意的拼音，但也不要乱写。先点击更新个人信息，然后勾选条款，点击付款。</li>
-<li>最后，我们可以用支付宝、PAYPAL、信用卡付款，现在我们不需要代购，可以直接自己购买，很方便。<br><img src="http://oo6qj81tq.bkt.clouddn.com/20160204191017661.png" alt="image"><br><img src="http://oo6qj81tq.bkt.clouddn.com/20160204191047052.png" alt="image"><br>可以选择支付宝购买，我在mac上使用Firefox、Safari浏览器打开此界面点击pay now都没有出现弹框，最后用手机完成的支付。完成以上操作，就能成功购买VPS。</li>
-</ol>
-<p>###Step 2：搭建VPS<br>下面是搬瓦工搭建VPS过程</p>
-<ol>
-<li>进入My Services<br><img src="http://oo6qj81tq.bkt.clouddn.com/20160204191618152.png" alt="image"></li>
-<li>进入KiwiVM Control Panel<br><img src="http://img.blog.csdn.net/20160204191717231" alt="image"><br><img src="http://oo6qj81tq.bkt.clouddn.com/20160204191934078.png" alt="image"></li>
-<li>安装Shaowscocks服务端<br><img src="http://oo6qj81tq.bkt.clouddn.com/20160204192138050.png" alt="image"></li>
-<li>安装Shaowscocks客户端<br>下载地址：<a href="https://github.com/shadowsocks/shadowsocks-iOS/releases" target="_blank" rel="external">https://github.com/shadowsocks/shadowsocks-iOS/releases</a> ，界面如下：<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121160723190-1614906842.png" alt="image"><br>地址填写服务器地址，端口和密码就是控制台Shadowsocks Server里生成的端口、密码。备注可以为空。这个时候就可以实现单人上网了。</li>
-</ol>
-<p>###Step 3：搬瓦工VPS shadowsocks多用户端口配置</p>
-<ol>
+            <h3 id="Step-1：购买搬瓦工VPS"><a href="#Step-1：购买搬瓦工VPS" class="headerlink" title="Step 1：购买搬瓦工VPS"></a>Step 1：购买搬瓦工VPS</h3><p>登录<a href="https://bwh1.net/cart.php?a=confproduct&amp;i=1" target="_blank" rel="external">搬瓦工官网</a><a id="more"></a></p>
+<ul>
+<li>选择套餐</li>
+</ul>
+<p><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/20160204185518833.png" alt="image"><br>套餐选择，一般只是用来上网的话用19.99美元一年的就比较合适，每月550G带宽足够，可根据个人用途选择套餐。搬瓦工VPSLocation，一共有洛杉矶、佛罗里达、荷兰、凤凰城4个数据中心，我们可以根据需要选择，一般我们会选择洛杉矶数据中心，因为速度比较快。具体对比信息可以去官网上找。</p>
+<ul>
+<li>确认订单</li>
+</ul>
+<p><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/20160204185846708.png" alt="image"></p>
+<ul>
+<li>支付订单__</li>
+</ul>
+<p>支付之前，需要注册账号，需要完善相应的信息<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20161121155527018-1135696125.jpg" alt="image"><br>这里比较关键，我们输入个人信息，英文或者拼音都可以，邮箱是新的，密码需要正确，国家不要乱写，选择自己的国家，然后地区，路段都可以任意的拼音，但也不要乱写。先点击更新个人信息，然后勾选条款，点击付款。</p>
+<ul>
+<li>最后，我们可以用支付宝、PAYPAL、信用卡付款，现在我们不需要代购，可以直接自己购买，很方便。</li>
+</ul>
+<p><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/20160204191017661.png" alt="image"><br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/20160204191047052.png" alt="image"><br>可以选择支付宝购买，我在mac上使用Firefox、Safari浏览器打开此界面点击pay now都没有出现弹框，最后用手机完成的支付。完成以上操作，就能成功购买VPS。</p>
+<h3 id="Step-2：搭建VPS"><a href="#Step-2：搭建VPS" class="headerlink" title="Step 2：搭建VPS"></a>Step 2：搭建VPS</h3><p>下面是搬瓦工搭建VPS过程</p>
+<ul>
+<li>进入My Services</li>
+</ul>
+<p><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/20160204191618152.png" alt="image"></p>
+<ul>
+<li>进入KiwiVM Control Panel</li>
+</ul>
+<p><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/20160204191934078.png" alt="image"></p>
+<ul>
+<li>安装Shaowscocks服务端</li>
+</ul>
+<p><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/20160204192138050.png" alt="image"></p>
+<ul>
+<li>安装Shaowscocks客户端</li>
+</ul>
+<p>下载地址：<a href="https://github.com/shadowsocks/shadowsocks-iOS/releases" target="_blank" rel="external">https://github.com/shadowsocks/shadowsocks-iOS/releases</a> ，界面如下：</p>
+<p><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20161121160723190-1614906842.png" alt="image"></p>
+<p>地址填写服务器地址，端口和密码就是控制台Shadowsocks Server里生成的端口、密码。备注可以为空。这个时候就可以实现单人上网了。</p>
+<h3 id="Step-3：搬瓦工VPS-shadowsocks多用户端口配置"><a href="#Step-3：搬瓦工VPS-shadowsocks多用户端口配置" class="headerlink" title="Step 3：搬瓦工VPS shadowsocks多用户端口配置"></a>Step 3：搬瓦工VPS shadowsocks多用户端口配置</h3><ul>
 <li>远程登录服务器，在终端输入：<code>ssh root@服务器ip -p 服务器端口</code>，输入密码，KiviVM控制台Root password modification生成的密码，这个密码就是你用来远程登录服务器的密码。</li>
-<li><p>依次运行以下命令：<br><br><code>wget --no-check-certificate https://bandwagong.b0.upaiyun.com/uploads/ss.sh</code><br><br><code>chmod +x ss.sh</code><br><br><code>./ss.sh 2&gt;&amp;1 | tee shadowsocks.log</code> ，这里要耐心等待。<br><br>安装成功会出现如下界面：<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121163859628-1669698799.png" alt="image"><br><strong>卸载方法：</strong><br><br>使用<code>root</code>用户登录，运行以下命令： <code>./ss.sh uninstall</code><br><br><strong>多用户配置文件</strong><br><br>配置文件路径：<code>vi /etc/shadowsocks.json</code><br><br>按i键进入编辑模式：插入如下命令<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161051596-283512173.png" alt="image"></p>
+<li>依次运行以下命令：<br></li>
+</ul>
+<p><code>wget --no-check-certificate https://bandwagong.b0.upaiyun.com/uploads/ss.sh</code><br><br><code>chmod +x ss.sh</code><br><br><code>./ss.sh 2&gt;&amp;1 | tee shadowsocks.log</code> ，这里要耐心等待。<br><br>安装成功会出现如下界面：<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20161121163859628-1669698799.png" alt="image"><br><strong>卸载方法：</strong><br><br>使用<code>root</code>用户登录，运行以下命令： <code>./ss.sh uninstall</code><br><br><strong>多用户配置文件</strong><br><br>配置文件路径：<code>vi /etc/shadowsocks.json</code><br><br>按i键进入编辑模式：插入如下命令<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20161121161051596-283512173.png" alt="image"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;server&quot;:&quot;0.0.0.0&quot;,   </div><div class="line">  &quot;local_address&quot;:&quot;127.0.0.1&quot;,</div><div class="line">  &quot;local_port&quot;:1080,</div><div class="line">  &quot;port_password&quot;:&#123;</div><div class="line">                  &quot;端口号1&quot;:&quot;密码1&quot;,</div><div class="line">                  &quot;端口号2&quot;:&quot;密码2&quot;,</div><div class="line">                  &quot;端口号3&quot;:&quot;密码3&quot;,</div><div class="line">                  &quot;端口号4&quot;:&quot;密码4&quot;,</div><div class="line">                  &quot;端口号5&quot;:&quot;密码5&quot;</div><div class="line">                  &#125;,</div><div class="line">    &quot;timeout&quot;:300,</div><div class="line">    &quot;method&quot;:&quot;aes-256-cfb&quot;,</div><div class="line">    &quot;fast_open&quot;: false</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
 <p>端口号可以自己定义，但注意不要与系统的端口重复。<br><br>重启shadowsocks就可以在客户端通过设置的端口号、密码来登录。<br><br>使用命令<br><br>启动：<code>/etc/init.d/shadowsocks start</code><br><br>停止：<code>/etc/init.d/shadowsocks stop</code><br><br>重启：<code>/etc/init.d/shadowsocks restart</code><br><br>状态：<code>/etc/init.d/shadowsocks status</code><br></p>
-<p>###Step 4：加速</p>
-<p>####安装net-speeder过程：<br>Net-Speeder是一个linux软件，主要目的是为了解决丢包问题，实现TCP双倍发包流量，可以减少超时和提高下载速度。也就是同一个数据包发送两份，这样的话在服务器带宽充足情况下，丢包率会平方级降低。网络传输速度也会有所提升。</p>
+<h3 id="Step-4：加速"><a href="#Step-4：加速" class="headerlink" title="Step 4：加速"></a>Step 4：加速</h3><h4 id="安装net-speeder过程："><a href="#安装net-speeder过程：" class="headerlink" title="安装net-speeder过程："></a>安装net-speeder过程：</h4><p>Net-Speeder是一个linux软件，主要目的是为了解决丢包问题，实现TCP双倍发包流量，可以减少超时和提高下载速度。也就是同一个数据包发送两份，这样的话在服务器带宽充足情况下，丢包率会平方级降低。网络传输速度也会有所提升。</p>
 <ol>
-<li>还是通过远程登录服务器，输入密码后在终端输入<code>wget http://www.banwagong.me/tools/centos_net-speeder.sh</code>,成功后显示如下<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161327206-2023687985.png" alt="image"></li>
-<li>输入命令：<code>sh centos_net-speeder.sh</code> ，此时需要等待一段时间。可能会出现错误404，如图所示：<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161414534-1418731061.png" alt="image"><br>原因是：搬瓦工的centos_net-speeder.sh文件中要去google下载一个net_speeder-v0.1.tar.gz的压缩包，而google的这个网址已经404了。<br><br> 解决方法：使用命令 <code>vi centos_net-speeder.sh</code><br><br> 进入如下界面，找到下图红框标注的位置：<br> <img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161458800-2039233982.png" alt="image"><br> 将原来的<code>http://net-speeder.googlecode.com/files/net_speeder-v0.1.tar.gz</code>替换为<code>http://coding.net/u/njzhenghao/p/download/git/raw/master/net_speeder-v0.1.tar.gz</code>，即上图框中的路径。然后保存退出。<br><br> 再此执行：<code>sh centos_net-speeder.sh</code>，这时就会出现下面的界面：<br> <img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161603612-1299046595.png" alt="image"></li>
+<li>还是通过远程登录服务器，输入密码后在终端输入<code>wget http://www.banwagong.me/tools/centos_net-speeder.sh</code>,成功后显示如下<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20161121161327206-2023687985.png" alt="image"></li>
+<li>输入命令：<code>sh centos_net-speeder.sh</code> ，此时需要等待一段时间。可能会出现错误404，如图所示：<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20161121161414534-1418731061.png" alt="image"><br>原因是：搬瓦工的centos_net-speeder.sh文件中要去google下载一个net_speeder-v0.1.tar.gz的压缩包，而google的这个网址已经404了。<br><br> 解决方法：使用命令 <code>vi centos_net-speeder.sh</code><br><br> 进入如下界面，找到下图红框标注的位置：<br> <img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20161121161458800-2039233982.png" alt="image"><br> 将原来的<code>http://net-speeder.googlecode.com/files/net_speeder-v0.1.tar.gz</code>替换为<code>http://coding.net/u/njzhenghao/p/download/git/raw/master/net_speeder-v0.1.tar.gz</code>，即上图框中的路径。然后保存退出。<br><br> 再此执行：<code>sh centos_net-speeder.sh</code>，这时就会出现下面的界面：<br> <img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20161121161603612-1299046595.png" alt="image"></li>
 <li>输入<code>nohup /usr/local/net_speeder/net_speeder venet0 &quot;ip&quot; &gt;/dev/null 2&gt;&amp;1 &amp;</code> ，回车。</li>
-<li>最后你就可以试着<code>ping</code>一下google了<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20161121161646940-1015572090.png" alt="image"><br>这时你就会发现每条数据包的后面都会加一个（DUP！），此标志就说明流量包双倍发送，加速成功。</li>
+<li>最后你就可以试着<code>ping</code>一下google了<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20161121161646940-1015572090.png" alt="image"><br>这时你就会发现每条数据包的后面都会加一个（DUP！），此标志就说明流量包双倍发送，加速成功。</li>
 <li>到此为止，所有的配置工作就已经做完，你可以打开Shadowsocks客户端（小飞机）输入你的ip、端口号和密码，然后就可以去国外的网站肆意驰骋了。</li>
 </ol>
 
@@ -404,7 +424,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/09/23/2017-09-23-black-mirror-white-bear-review/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/AAE54A5D-E51F-4F55-BBF6-7D7D67EB04AB.png)" alt="Black Mirror - White Bear Review" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/AAE54A5D-E51F-4F55-BBF6-7D7D67EB04AB.png)" alt="Black Mirror - White Bear Review" class="thumbnail-image"></span>
     
 </a>
 
@@ -423,7 +443,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/Road-in-the-sunrise.jpg)" alt="KVO实现原理" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/Road-in-the-sunrise.jpg)" alt="KVO实现原理" class="thumbnail-image"></span>
     
 </a>
 
@@ -442,7 +462,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/01_pod-best-animals.adapt.1900.1.jpg)" alt="Block那点事儿" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/01_pod-best-animals.adapt.1900.1.jpg)" alt="Block那点事儿" class="thumbnail-image"></span>
     
 </a>
 
@@ -461,7 +481,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/pexels-photo-206660.jpeg)" alt="轻量级视图控制器" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/pexels-photo-206660.jpeg)" alt="轻量级视图控制器" class="thumbnail-image"></span>
     
 </a>
 
@@ -480,7 +500,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/macbook-apple-imac-computer-39284.jpeg)" alt="Linux下配置Tomcat服务器" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/macbook-apple-imac-computer-39284.jpeg)" alt="Linux下配置Tomcat服务器" class="thumbnail-image"></span>
     
 </a>
 

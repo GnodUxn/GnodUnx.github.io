@@ -13,13 +13,13 @@
 <meta property="og:site_name" content="GnodUxn&#39;s Blog">
 <meta property="og:description" content="iOS防止Button重复点击">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20171117143731185-35747444.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20171117150727748-863855683.png">
-<meta property="og:updated_time" content="2017-10-13T02:31:13.000Z">
+<meta property="og:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20171117143731185-35747444.png">
+<meta property="og:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20171117150727748-863855683.png">
+<meta property="og:updated_time" content="2018-12-25T15:26:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS防止Button重复点击">
 <meta name="twitter:description" content="iOS防止Button重复点击">
-<meta name="twitter:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20171117143731185-35747444.png">
+<meta name="twitter:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20171117143731185-35747444.png">
     
 
     
@@ -260,11 +260,11 @@
             <p>项目中常会遇到在按钮的点击事件中去执行一些耗时操作。如果处理不当经常会出现连续多次点击push多次的情况，造成不好的用户体验。</p>
 <p>一种情况是用户快速连续点击，这种情况无法避免。另一种情况是点击一次后响应时间太长，导致用户一直停留在点击界面，也会去再次点击按钮确认是否能执行下一个界面。虽然我们可以在用户点击一次后去显示一个HUB窗口隔绝用户操作，但我们并不清楚服务器去响应这个操作究竟需要多长时间，如果HUB指示器显示时间太长会显得响应特别慢，如果太短，用户很可能在指示器消失后再去点击Button，这时也会出现重复push多次。<a id="more"></a></p>
 <p>通常有三种方式解决此问题。</p>
-<p>####方式一<br>如果你的Navigation是自定义的，可以重写以下方法：</p>
+<h4 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h4><p>如果你的Navigation是自定义的，可以重写以下方法：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated</div><div class="line">&#123;</div><div class="line">    if (![[super topViewController] isKindOfClass:[viewController class]]) &#123;  ／／ 如果和上一个控制器一样，隔绝此操作</div><div class="line">        [super pushViewController:viewController animated:animated];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>此中方法可以防止多次重复push，但如果你想push的下一个控制器恰好和上一个控制器类型(Class)一样，就不会push成功。所以并不推荐使用此方法。</p>
-<p>####方式二<br>点击一次后将button的enabled变为NO。<br><br>具体思路是：如果在button的点击事件中要做耗时操作，可能是网络请求和请求成功后的数据处理比较耗时。如果只是单纯的在请求成功和失败的回调中写一遍btn.enabled = YES就会发现如果连续点击还是会出现push多次的情况。原因可能是push操作需要时间去执行，我们在这段时间连续快速点击还是会导致push多次，感兴趣的可以去试一下。我的思路是在请求失败后单独将buuton的enabled设为YES，请求成功后不对button做任何操作。最后在- viewWillAppear方法中将button的enabled设为YES，以防在pop回本控制器的时候button不可点击。下面上代码：<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20171117143731185-35747444.png" alt="image"><br>其中的WXDHTTPTool是封装了一层AFNetworking的网络请求类。<br><br>在- viewWillAppear方法中将button的enabled设为YES：<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20171117150727748-863855683.png" alt="image"><br>这样做也可以实现防止重复push的问题，但并不能做到一劳永逸。每个控制器都需要这么去做，虽然代码并不复杂，但方式并不优雅。</p>
-<p>####方式三<br>最优雅的方式，使用Runtime监听点击事件，忽略重复点击，设置一个eventTimeInterval属性，使其规定时间内只响应一次点击事件。废话不多说，上代码。</p>
+<h4 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h4><p>点击一次后将button的enabled变为NO。<br><br>具体思路是：如果在button的点击事件中要做耗时操作，可能是网络请求和请求成功后的数据处理比较耗时。如果只是单纯的在请求成功和失败的回调中写一遍btn.enabled = YES就会发现如果连续点击还是会出现push多次的情况。原因可能是push操作需要时间去执行，我们在这段时间连续快速点击还是会导致push多次，感兴趣的可以去试一下。我的思路是在请求失败后单独将buuton的enabled设为YES，请求成功后不对button做任何操作。最后在- viewWillAppear方法中将button的enabled设为YES，以防在pop回本控制器的时候button不可点击。下面上代码：<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20171117143731185-35747444.png" alt="image"><br>其中的WXDHTTPTool是封装了一层AFNetworking的网络请求类。<br><br>在- viewWillAppear方法中将button的enabled设为YES：<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20171117150727748-863855683.png" alt="image"><br>这样做也可以实现防止重复push的问题，但并不能做到一劳永逸。每个控制器都需要这么去做，虽然代码并不复杂，但方式并不优雅。</p>
+<h4 id="方式三"><a href="#方式三" class="headerlink" title="方式三"></a>方式三</h4><p>最优雅的方式，使用Runtime监听点击事件，忽略重复点击，设置一个eventTimeInterval属性，使其规定时间内只响应一次点击事件。废话不多说，上代码。</p>
 <ul>
 <li>为UIButton创建一个分类，这里我起名为WXD。</li>
 <li>.h文件：添加一个属性eventTimeInterval，用来设置button点击间隔时间。</li>
@@ -385,7 +385,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/09/23/2017-09-23-black-mirror-white-bear-review/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/AAE54A5D-E51F-4F55-BBF6-7D7D67EB04AB.png)" alt="Black Mirror - White Bear Review" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/AAE54A5D-E51F-4F55-BBF6-7D7D67EB04AB.png)" alt="Black Mirror - White Bear Review" class="thumbnail-image"></span>
     
 </a>
 
@@ -404,7 +404,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/Road-in-the-sunrise.jpg)" alt="KVO实现原理" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/Road-in-the-sunrise.jpg)" alt="KVO实现原理" class="thumbnail-image"></span>
     
 </a>
 
@@ -423,7 +423,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/01_pod-best-animals.adapt.1900.1.jpg)" alt="Block那点事儿" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/01_pod-best-animals.adapt.1900.1.jpg)" alt="Block那点事儿" class="thumbnail-image"></span>
     
 </a>
 
@@ -442,7 +442,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/pexels-photo-206660.jpeg)" alt="轻量级视图控制器" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/pexels-photo-206660.jpeg)" alt="轻量级视图控制器" class="thumbnail-image"></span>
     
 </a>
 
@@ -461,7 +461,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/macbook-apple-imac-computer-39284.jpeg)" alt="Linux下配置Tomcat服务器" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/macbook-apple-imac-computer-39284.jpeg)" alt="Linux下配置Tomcat服务器" class="thumbnail-image"></span>
     
 </a>
 

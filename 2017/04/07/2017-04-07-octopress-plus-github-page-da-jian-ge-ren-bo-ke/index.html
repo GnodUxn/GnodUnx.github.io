@@ -14,8 +14,8 @@
 <meta property="og:description" content="octopress + GitHub Page 搭建个人博客">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://cc.cocimg.com/api/uploads/20150911/1441962911134868.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/88e9bccc55f0d01e5bc41414cffbf1c2.png">
-<meta property="og:updated_time" content="2017-10-23T06:20:10.000Z">
+<meta property="og:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/88e9bccc55f0d01e5bc41414cffbf1c2.png">
+<meta property="og:updated_time" content="2018-12-25T14:57:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="octopress + GitHub Page 搭建个人博客">
 <meta name="twitter:description" content="octopress + GitHub Page 搭建个人博客">
@@ -257,12 +257,13 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>近几个月以来没有怎么写博客，一方面是因为工作比较忙，另一方面自己的私事比较多。近期也会将<a href="http://www.cnblogs.com/wanxudong/" target="_blank" rel="external">博客园</a>上自己写的几篇觉得可以的文章搬过来。顺便说一句，三月底终于把拖了快三年的驾照拿到手了，这是件值得庆贺的事。再说最近，项目基本就是迭代，工作量不大。所以趁着时间比较充裕，打算将这个习惯继续下去。开博客对我本人来说，只是一种对自己学习经历的记录。这件事权当是种锻炼，凡事总是由不会到会，由不懂到懂。学习是一条孤独且漫长的路，只有进步才能让人更充实。<a id="more"></a><br>​<br>首先说明两个关键术语：</p>
-<p>###Octopress</p>
-<ul>
+            <p>近几个月以来没有怎么写博客，一方面是因为工作比较忙，另一方面自己的私事比较多。近期也会将<a href="http://www.cnblogs.com/wanxudong/" target="_blank" rel="external">博客园</a>上自己写的几篇觉得可以的文章搬过来。顺便说一句，三月底终于把拖了快三年的驾照拿到手了，这是件值得庆贺的事。再说最近，项目基本就是迭代，工作量不大。所以趁着时间比较充裕，打算将这个习惯继续下去。开博客对我本人来说，只是一种对自己学习经历的记录。这件事权当是种锻炼，凡事总是由不会到会，由不懂到懂。学习是一条孤独且漫长的路，只有进步才能让人更充实。<a id="more"></a></p>
+<p>首先说明两个关键术语：</p>
+<h3 id="Octopress"><a href="#Octopress" class="headerlink" title="Octopress"></a>Octopress</h3><ul>
 <li><code>Octopress</code>是基于 <code>Jekyll</code> 的博客框架。他们的关系就像 <code>jQuery</code> 与 <code>js</code> 的关系一样。</li>
-<li>它为我们提供了现成的美观的主题模板，并且配置简单，使用方便，大大降低了我们建站的门槛。<br>###What is Octopress?(摘自Octopress官方文档)<br>Octopress is Jekyll blogging at its finest.</li>
+<li>它为我们提供了现成的美观的主题模板，并且配置简单，使用方便，大大降低了我们建站的门槛。</li>
 </ul>
+<h3 id="What-is-Octopress-摘自Octopress官方文档"><a href="#What-is-Octopress-摘自Octopress官方文档" class="headerlink" title="What is Octopress?(摘自Octopress官方文档)"></a>What is Octopress?(摘自Octopress官方文档)</h3><p>Octopress is Jekyll blogging at its finest.</p>
 <ol>
 <li>Octopress sports a clean responsive theme written in semantic HTML5, focused on readability and friendliness toward mobile devices.</li>
 <li>Code blogging is easy and beautiful. Embed code (with Solarized styling) in your posts from gists, jsFiddle or from your filesystem.</li>
@@ -271,19 +272,17 @@
 <li>Ships with great plug-ins some original and others from the Jekyll community — tested and improved.</li>
 </ol>
 <p>Note: Octopress requires a minimum Ruby version of 1.9.3-p0.</p>
-<p>###GitHub Pages</p>
-<ul>
+<h3 id="GitHub-Pages"><a href="#GitHub-Pages" class="headerlink" title="GitHub Pages"></a>GitHub Pages</h3><ul>
 <li><code>GitHub Pages</code> 是 GitHub 提供的一项服务。它用于显示托管在 GitHub 上的静态网页。所以我们可以用 Github Pages 搭建博客，当然我们也可以把项目的文档和主页放在上面。</li>
 </ul>
 <p>大致思路是通过Octopress生成本地静态博客网页，然后将静态网页布置到GitHub提供的GitHub Pages上面。</p>
-<p>###安装</p>
-<hr>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><hr>
 <p>下面是具体的安装步骤(这里使用<code>RVM</code>安装，还可以通过<code>rbenv</code>安装，Octopress给出的官方安装文档：<a href="http://octopress.org/docs/setup/" target="_blank" rel="external">Octopress Setup</a>)：</p>
-<p>####查看ruby版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ruby --version  # 根据Octopress官方文档Ruby必须 &gt;= 1.9.3-p0</div></pre></td></tr></table></figure></p>
+<h4 id="查看ruby版本"><a href="#查看ruby版本" class="headerlink" title="查看ruby版本"></a>查看ruby版本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ruby --version  # 根据Octopress官方文档Ruby必须 &gt;= 1.9.3-p0</div></pre></td></tr></table></figure>
 <p>如果ruby版本 &gt;= <code>1.9.3-p0</code> ，跳过RVM和Ruby的安装。</p>
-<p>####安装RVM<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -L https://get.rvm.io | bash -s stable --ruby</div></pre></td></tr></table></figure></p>
-<p>####安装Ruby 1.9.3<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rvm install 1.9.3</div><div class="line">rvm use 1.9.3</div><div class="line">rvm rubygems latest</div></pre></td></tr></table></figure></p>
-<p>####安装 Octopress<br>将 Octopress的项目<code>clone</code>到本地:</p>
+<h4 id="安装RVM"><a href="#安装RVM" class="headerlink" title="安装RVM"></a>安装RVM</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -L https://get.rvm.io | bash -s stable --ruby</div></pre></td></tr></table></figure>
+<h4 id="安装Ruby-1-9-3"><a href="#安装Ruby-1-9-3" class="headerlink" title="安装Ruby 1.9.3"></a>安装Ruby 1.9.3</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rvm install 1.9.3</div><div class="line">rvm use 1.9.3</div><div class="line">rvm rubygems latest</div></pre></td></tr></table></figure>
+<h4 id="安装-Octopress"><a href="#安装-Octopress" class="headerlink" title="安装 Octopress"></a>安装 Octopress</h4><p>将 Octopress的项目<code>clone</code>到本地:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git clone git://github.com/imathis/octopress.git octopress</div><div class="line">cd octopress</div></pre></td></tr></table></figure>
 <p>更新<code>ruby</code>源,将官方的<code>ruby</code>源替换成国内淘宝的源。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">gem sources --remove https://rubygems.org/</div><div class="line">gem sources -a https://ruby.taobao.org/</div><div class="line">gem sources -l</div></pre></td></tr></table></figure>
@@ -291,13 +290,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gem install bundler # 若遇权限问题加上sudo重新执行，并输入密码。</div><div class="line">bundle install</div></pre></td></tr></table></figure>
 <p>最后安装 Octopress</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rake install       # 安装octopress默认主题</div></pre></td></tr></table></figure>
-<p>####修改Octopress初始配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ls                 # 查看当前目录所有文件</div><div class="line">vim _config.yml    # 通过vim编辑主要配置</div></pre></td></tr></table></figure></p>
-<p><img src="http://cc.cocimg.com/api/uploads/20150911/1441962911134868.png" alt="image"><br>可以看到如下代码：</p>
+<h4 id="修改Octopress初始配置"><a href="#修改Octopress初始配置" class="headerlink" title="修改Octopress初始配置"></a>修改Octopress初始配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ls                 # 查看当前目录所有文件</div><div class="line">vim _config.yml    # 通过vim编辑主要配置</div></pre></td></tr></table></figure>
+<p><img src="http://cc.cocimg.com/api/uploads/20150911/1441962911134868.png" alt=""><br>可以看到如下代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"># ----------------------- #</div><div class="line">#      Main Configs       #</div><div class="line"># ----------------------- #</div><div class="line">#网站地址，这里是GitHub项目地址,为必填</div><div class="line">url: http://userName.github.io</div><div class="line">#网站标题    </div><div class="line">title: user的博客</div><div class="line">#网站副标题</div><div class="line">subtitle: 天行健，君子以自强不息。</div><div class="line">#网址作者</div><div class="line">author: userName</div><div class="line">#搜索引擎</div><div class="line">simple_search: https://www.google.com/search</div><div class="line">#网站的描述，出现在HTML页面中的 meta 中的 description</div><div class="line">description:</div></pre></td></tr></table></figure>
 <p>确保在octopress目录，执行命令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rake generate  # 生成静态站点</div><div class="line">rake preview   # 预览静态站点，在http://localhost:4000</div></pre></td></tr></table></figure>
 <p>在浏览器输入<code>localhost:4000</code>可看到生成的博客。<br><br><code>Tips:</code> 最好把里面的twitter相关的信息全部删掉，否则由于<code>GFW</code>的原因，将会造成页面load很慢。</p>
-<p>###部署到GitHub Pages上<br>在 GitHub 上创建一个<code>New repository</code>,<code>Repository name</code>即项目名称命名规则为 <code>userName.github.io</code>，<code>userName</code>必须与用户名称一致。<br><img src="http://oo6qj81tq.bkt.clouddn.com/88e9bccc55f0d01e5bc41414cffbf1c2.png" alt="image"><br><code>Tips:</code>最好不要勾选<code>README</code>，免得同步到远程仓库的时候需要做额外的<code>pull</code>操作。</p>
+<h3 id="部署到GitHub-Pages上"><a href="#部署到GitHub-Pages上" class="headerlink" title="部署到GitHub Pages上"></a>部署到GitHub Pages上</h3><p>在 GitHub 上创建一个<code>New repository</code>,<code>Repository name</code>即项目名称命名规则为 <code>userName.github.io</code>，<code>userName</code>必须与用户名称一致。<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/88e9bccc55f0d01e5bc41414cffbf1c2.png" alt="image"><br><code>Tips:</code>最好不要勾选<code>README</code>，免得同步到远程仓库的时候需要做额外的<code>pull</code>操作。</p>
 <hr>
 <p>将本地代码仓库同步到<code>GitHub</code>.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rake setup_github_pages</div></pre></td></tr></table></figure>
@@ -324,8 +323,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git remote -v               # 显示所有远程仓库</div><div class="line">git pull origin source      # 取回远程仓库的变化</div><div class="line">git branch                  # 列出所有本地分支</div><div class="line">git checkout [branch-name]  # 切换到指定分支，并更新工作区</div><div class="line">git merge [branch]          # 合并指定分支到当前分支</div><div class="line">git log                     # 查看当前分支的版本历史</div></pre></td></tr></table></figure>
 <p><code>Tips:</code> 关于Octopress的个性化配置和在多台设备间同步使用，会在之后的文章中更新。</p>
 <hr>
-<p>###参考文章：</p>
-<ul>
+<h3 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h3><ul>
 <li><a href="http://blog.devtang.com/2012/02/10/setup-blog-based-on-github/" target="_blank" rel="external">象写程序一样写博客：搭建基于github的博客</a></li>
 <li><a href="http://www.cocoachina.com/programmer/20150923/13421.html" target="_blank" rel="external">制作个人博客站（一）：Mac系统下使用 Octopress + GitHub Pages 搭建个人博客</a></li>
 <li><a href="http://www.jianshu.com/p/0ac2ac1a8e45" target="_blank" rel="external">octopress博客搭建和个性化配置</a></li>
@@ -435,7 +433,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/09/23/2017-09-23-black-mirror-white-bear-review/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/AAE54A5D-E51F-4F55-BBF6-7D7D67EB04AB.png)" alt="Black Mirror - White Bear Review" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/AAE54A5D-E51F-4F55-BBF6-7D7D67EB04AB.png)" alt="Black Mirror - White Bear Review" class="thumbnail-image"></span>
     
 </a>
 
@@ -454,7 +452,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/Road-in-the-sunrise.jpg)" alt="KVO实现原理" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/Road-in-the-sunrise.jpg)" alt="KVO实现原理" class="thumbnail-image"></span>
     
 </a>
 
@@ -473,7 +471,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/01_pod-best-animals.adapt.1900.1.jpg)" alt="Block那点事儿" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/01_pod-best-animals.adapt.1900.1.jpg)" alt="Block那点事儿" class="thumbnail-image"></span>
     
 </a>
 
@@ -492,7 +490,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/pexels-photo-206660.jpeg)" alt="轻量级视图控制器" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/pexels-photo-206660.jpeg)" alt="轻量级视图控制器" class="thumbnail-image"></span>
     
 </a>
 
@@ -511,7 +509,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/macbook-apple-imac-computer-39284.jpeg)" alt="Linux下配置Tomcat服务器" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/macbook-apple-imac-computer-39284.jpeg)" alt="Linux下配置Tomcat服务器" class="thumbnail-image"></span>
     
 </a>
 

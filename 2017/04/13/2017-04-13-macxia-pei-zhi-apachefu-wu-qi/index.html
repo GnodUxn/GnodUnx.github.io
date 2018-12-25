@@ -13,17 +13,17 @@
 <meta property="og:site_name" content="GnodUxn&#39;s Blog">
 <meta property="og:description" content="Mac下配置Apache服务器">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20160906182843379-2099378806.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20160906183453957-634964004.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20160906183829441-1446659023.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20160906184822004-1097830892.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20160906185309394-1277903934.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20160906190251941-1086408842.png">
-<meta property="og:updated_time" content="2017-10-13T02:42:54.000Z">
+<meta property="og:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160906182843379-2099378806.png">
+<meta property="og:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160906183453957-634964004.png">
+<meta property="og:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160906183829441-1446659023.png">
+<meta property="og:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160906184822004-1097830892.png">
+<meta property="og:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160906185309394-1277903934.png">
+<meta property="og:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160906190251941-1086408842.png">
+<meta property="og:updated_time" content="2018-12-25T15:41:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac下配置Apache服务器">
 <meta name="twitter:description" content="Mac下配置Apache服务器">
-<meta name="twitter:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20160906182843379-2099378806.png">
+<meta name="twitter:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160906182843379-2099378806.png">
     
 
     
@@ -263,21 +263,21 @@
             
             <p>有的时候，我们需要在内网工作组中分享一些文件或是后台接口没有及时给出，你又想要模拟真实数据，直接在项目里创建plist也可以做到这种需求，但难免让工程变得冗余且看起来比较Low。这个时候就看出配置本地服务器的重要性了，不用时刻等着后台接口的更新，只需要根据接口文档自己模拟真实数据，即方便又显得高大上。<a id="more"></a></p>
 <p>Mac自带了Apache环境，我们要做的只是稍微配置一下。<br><br>环境：Mac OS X 10.11 。</p>
-<p>###启动Apache<br>在终端输入：<code>sudo apachectl start</code>，这样就将Mac自带的Apache启动了，在浏览器输入<code>http://localhost</code>，会显示“It works!”，说明服务器已经启动成功了。Apache默认的根目录在<code>/Library/WebServer/Documents/</code>下。</p>
-<p>###配置服务器<br>在Finder中创建一个”Sites”的文件夹，直接创建在/Users/wan(当前用户名)目录下，如图：<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20160906182843379-2099378806.png" alt="image"></p>
+<h3 id="启动Apache"><a href="#启动Apache" class="headerlink" title="启动Apache"></a>启动Apache</h3><p>在终端输入：<code>sudo apachectl start</code>，这样就将Mac自带的Apache启动了，在浏览器输入<code>http://localhost</code>，会显示“It works!”，说明服务器已经启动成功了。Apache默认的根目录在<code>/Library/WebServer/Documents/</code>下。</p>
+<h3 id="配置服务器"><a href="#配置服务器" class="headerlink" title="配置服务器"></a>配置服务器</h3><p>在Finder中创建一个”Sites”的文件夹，直接创建在/Users/wan(当前用户名)目录下，如图：<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160906182843379-2099378806.png" alt="image"></p>
 <ol>
 <li>切换工作目录下：<code>cd /etc/apache2</code></li>
 <li>备份文件，只需要执行一次：<code>sudo cp httpd.conf httpd.conf.bak</code></li>
 <li>如果操作出现错误！可以使用命令，恢复备份的 <code>httpd.conf</code> 文件：<code>sudo cp httpd.conf.bak httpd.conf</code></li>
-<li>用vim编辑<code>httpd.conf</code>文件，<code>httpd.conf</code>文件时Apache的配置文件：<code>sudo vim httpd.conf</code><br><br>这时候需要输入密码来获取权限，出现如下界面<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20160906183453957-634964004.png" alt="image"><br>回车进入到下面的界面：<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20160906183829441-1446659023.png" alt="image"></li>
-<li>按住<code>shift</code>键，并且输入<code>：</code>号进入vim命令模式，搜索<code>/DocumentRoot</code>，找到图中对应位置将圈内路径改为之前创建的Sites文件夹的路径。<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20160906184822004-1097830892.png" alt="image"></li>
+<li>用vim编辑<code>httpd.conf</code>文件，<code>httpd.conf</code>文件时Apache的配置文件：<code>sudo vim httpd.conf</code><br><br>这时候需要输入密码来获取权限，出现如下界面<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160906183453957-634964004.png" alt="image"><br>回车进入到下面的界面：<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160906183829441-1446659023.png" alt="image"></li>
+<li>按住<code>shift</code>键，并且输入<code>：</code>号进入vim命令模式，搜索<code>/DocumentRoot</code>，找到图中对应位置将圈内路径改为之前创建的Sites文件夹的路径。<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160906184822004-1097830892.png" alt="image"></li>
 <li>之后找到<code>Options FollowSymLinks：</code>修改为<code>Options Indexes FollowSymLinks</code>，在两个单词间添加一个Indexes单词。</li>
-<li>接下来查找<code>php</code>，<code>:/php</code>，定位到图中位置：<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20160906185309394-1277903934.png" alt="image"></li>
+<li>接下来查找<code>php</code>，<code>:/php</code>，定位到图中位置：<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160906185309394-1277903934.png" alt="image"></li>
 <li>将这句代码前面的<code>＃</code>去掉。最后<code>:wq</code>保存并退出。</li>
 <li>切换工作目录：<code>cd /etc</code>。</li>
 <li>拷贝<code>php.ini</code>文件：<code>sudo cp php.ini.default php.ini</code></li>
 </ol>
-<p>###重新启动apache服务器<br>在终端输入：<code>sudo apachectl -k restart</code><br><br>这个时候如果在浏览器地址输入<code>http://127.0.0.1/</code>，就会将Sites文件夹中的目录列出来了。同一工作组里的电脑可以通过本电脑的ip地址来访问本电脑上的文件。<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20160906190251941-1086408842.png" alt="image"></p>
+<h3 id="重新启动apache服务器"><a href="#重新启动apache服务器" class="headerlink" title="重新启动apache服务器"></a>重新启动apache服务器</h3><p>在终端输入：<code>sudo apachectl -k restart</code><br><br>这个时候如果在浏览器地址输入<code>http://127.0.0.1/</code>，就会将Sites文件夹中的目录列出来了。同一工作组里的电脑可以通过本电脑的ip地址来访问本电脑上的文件。<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160906190251941-1086408842.png" alt="image"></p>
 
 	    
             	原文链接：<a href=" /2017/04/13/2017-04-13-macxia-pei-zhi-apachefu-wu-qi/ ">  http://wanxudong.top//2017/04/13/2017-04-13-macxia-pei-zhi-apachefu-wu-qi/ </a> 转载请注明出处   
@@ -387,7 +387,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/09/23/2017-09-23-black-mirror-white-bear-review/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/AAE54A5D-E51F-4F55-BBF6-7D7D67EB04AB.png)" alt="Black Mirror - White Bear Review" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/AAE54A5D-E51F-4F55-BBF6-7D7D67EB04AB.png)" alt="Black Mirror - White Bear Review" class="thumbnail-image"></span>
     
 </a>
 
@@ -406,7 +406,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/Road-in-the-sunrise.jpg)" alt="KVO实现原理" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/Road-in-the-sunrise.jpg)" alt="KVO实现原理" class="thumbnail-image"></span>
     
 </a>
 
@@ -425,7 +425,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/01_pod-best-animals.adapt.1900.1.jpg)" alt="Block那点事儿" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/01_pod-best-animals.adapt.1900.1.jpg)" alt="Block那点事儿" class="thumbnail-image"></span>
     
 </a>
 
@@ -444,7 +444,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/pexels-photo-206660.jpeg)" alt="轻量级视图控制器" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/pexels-photo-206660.jpeg)" alt="轻量级视图控制器" class="thumbnail-image"></span>
     
 </a>
 
@@ -463,7 +463,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/macbook-apple-imac-computer-39284.jpeg)" alt="Linux下配置Tomcat服务器" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/macbook-apple-imac-computer-39284.jpeg)" alt="Linux下配置Tomcat服务器" class="thumbnail-image"></span>
     
 </a>
 

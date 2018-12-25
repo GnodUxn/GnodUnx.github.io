@@ -13,16 +13,16 @@
 <meta property="og:site_name" content="GnodUxn&#39;s Blog">
 <meta property="og:description" content="iOS与H5交互">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20160613164528792-177708558.jpg">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20160613171731245-1295359900.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20160613171849104-1312256177.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20160613172158401-1739766841.png">
-<meta property="og:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20160613172532198-955522503.png">
-<meta property="og:updated_time" content="2017-09-23T11:58:39.000Z">
+<meta property="og:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160613164528792-177708558.jpg">
+<meta property="og:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160613171731245-1295359900.png">
+<meta property="og:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160613171849104-1312256177.png">
+<meta property="og:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160613172158401-1739766841.png">
+<meta property="og:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160613172532198-955522503.png">
+<meta property="og:updated_time" content="2018-12-25T15:29:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS与H5交互">
 <meta name="twitter:description" content="iOS与H5交互">
-<meta name="twitter:image" content="http://oo6qj81tq.bkt.clouddn.com/966882-20160613164528792-177708558.jpg">
+<meta name="twitter:image" content="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160613164528792-177708558.jpg">
     
 
     
@@ -261,8 +261,8 @@
         
             
             <p>搬家了，搬家了，将自己博客园中的几篇阅读量较高的博客搬到自己的个人主页。<br></p>
-<p>前提：在iOS控制器中加载UIWebView，设置代理，遵守UIWebViewDelegate协议。<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20160613164528792-177708558.jpg" alt="image"><a id="more"></a></p>
-<p>###iOS调用JS方法<br>通过iOS调用JS代码实现起来比较方便直接调用UIWebView的方法</p>
+<p>前提：在iOS控制器中加载UIWebView，设置代理，遵守UIWebViewDelegate协议。<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160613164528792-177708558.jpg" alt="image"><a id="more"></a></p>
+<h3 id="iOS调用JS方法"><a href="#iOS调用JS方法" class="headerlink" title="iOS调用JS方法"></a>iOS调用JS方法</h3><p>通过iOS调用JS代码实现起来比较方便直接调用UIWebView的方法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (nullable NSString *)stringByEvaluatingJavaScriptFromString:(NSString *)script;</div></pre></td></tr></table></figure>
 <ul>
 <li>查询标签</li>
@@ -278,8 +278,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 更改</div><div class="line">NSString *str2 = @&quot;var change = document.getElementsByClassName(&apos;change&apos;)[0];&quot;</div><div class="line">                                &quot;change.innerHTML = &apos;hello&apos;;&quot;;</div><div class="line">NSString *result =  [webView stringByEvaluatingJavaScriptFromString:str2];</div></pre></td></tr></table></figure>
 <p><strong>HTML端代码:</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">      &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">      &lt;title&gt;iOS和H5交互&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">      &lt;p id=&quot;word&quot;&gt;6666666666&lt;/p&gt;</div><div class="line">      &lt;ul&gt;</div><div class="line">          &lt;li class=&quot;change&quot;&gt;111111&lt;/li&gt;</div><div class="line">          &lt;li class=&quot;haha&quot;&gt;222222&lt;/li&gt;</div><div class="line">          &lt;li&gt;333333&lt;/li&gt;</div><div class="line">          &lt;li&gt;444444&lt;/li&gt;</div><div class="line">      &lt;/ul&gt;</div><div class="line">      &lt;input class=&quot;name&quot; placeholder=&quot;请输入密码&quot;&gt;</div><div class="line">      &lt;button onclick=&quot;buttonClick()&quot;&gt;提交信息&lt;/button&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">        alert(&apos;这个一个弹框&apos;);</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
-<p>###JS调用iOS方法</p>
-<ul>
+<h3 id="JS调用iOS方法"><a href="#JS调用iOS方法" class="headerlink" title="JS调用iOS方法"></a>JS调用iOS方法</h3><ul>
 <li>第一种方法比较简单，通过字符串的比对。这种方式iOS端代码比较简单，网页加载完成后后台需要重新定义网页url，将移动端需要的参数拼接到url上返回，或者按照和后台约定好的字段来进行字符串比对以达到调用iOS方法的目的。下面贴代码。<br><br><strong>oc代码：(需要实现webView的协议)</strong></li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// 拦截协议头，调取系统摄像头</div><div class="line">#pragma mark UIWebViewDelegate</div><div class="line">- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:            (UIWebViewNavigationType)navigationType</div><div class="line">&#123;</div><div class="line">    NSString *str = request.URL.absoluteString;</div><div class="line">    if ([str containsString:@&quot;wxd://&quot;]) &#123;</div><div class="line">        [self getImage];</div><div class="line">    &#125;</div><div class="line">    return YES;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)getImage</div><div class="line">&#123;</div><div class="line">    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) &#123; //调用相册</div><div class="line">    //实例化控制器</div><div class="line">    UIImagePickerController *picker = [[UIImagePickerController alloc] init];</div><div class="line">    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;</div><div class="line">    picker.delegate = self;</div><div class="line">    // 是否有图片选取框</div><div class="line">    picker.allowsEditing = YES;</div><div class="line">    [self presentViewController:picker animated:YES completion:nil];</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -288,7 +287,7 @@
 <ul>
 <li>第二种方法，JS直接用oc方法名来调用oc方法，类似于安卓.addJavascriptInterface(new JsObject(), “Android”)方法，头文件需要导入#import <javascriptcore javascriptcore.h=""></javascriptcore></li>
 </ul>
-<p>首先创建一个继承自NSObject的类，在这里我命名为JSTestObjext，.h代码如下：<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20160613171731245-1295359900.png" alt="image"><br>.m中实现协议方法，代码如下：<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20160613171849104-1312256177.png" alt="image"><br>之后在加载webView的控制器中调用：<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20160613172158401-1739766841.png" alt="image"><br>到此为止，oc代码就已经写完了，我们只需告诉JS端使用testobject类，就可以调oc的方法了。下面附上JS调用的代码：<br><img src="http://oo6qj81tq.bkt.clouddn.com/966882-20160613172532198-955522503.png" alt="image"></p>
+<p>首先创建一个继承自NSObject的类，在这里我命名为JSTestObjext，.h代码如下：<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160613171731245-1295359900.png" alt="image"><br>.m中实现协议方法，代码如下：<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160613171849104-1312256177.png" alt="image"><br>之后在加载webView的控制器中调用：<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160613172158401-1739766841.png" alt="image"><br>到此为止，oc代码就已经写完了，我们只需告诉JS端使用testobject类，就可以调oc的方法了。下面附上JS调用的代码：<br><img src="https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/966882-20160613172532198-955522503.png" alt="image"></p>
 <hr>
 <p>到此公司里所使用的iOS与H5交互的方法就都写在这里了。<br>使用第二种方法，<javascriptcore javascriptcore.h="">库来实现交互遇到的问题，已经写到了另一篇博客当中<a href="http://www.cnblogs.com/wanxudong/p/5983706.html" target="_blank" rel="external">iOS与H5交互遇到的坑</a>。</javascriptcore></p>
 
@@ -400,7 +399,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/09/23/2017-09-23-black-mirror-white-bear-review/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/AAE54A5D-E51F-4F55-BBF6-7D7D67EB04AB.png)" alt="Black Mirror - White Bear Review" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/AAE54A5D-E51F-4F55-BBF6-7D7D67EB04AB.png)" alt="Black Mirror - White Bear Review" class="thumbnail-image"></span>
     
 </a>
 
@@ -419,7 +418,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/09/15/2017-09-15-kvoshi-xian-yuan-li/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/Road-in-the-sunrise.jpg)" alt="KVO实现原理" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/Road-in-the-sunrise.jpg)" alt="KVO实现原理" class="thumbnail-image"></span>
     
 </a>
 
@@ -438,7 +437,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/08/22/2017-08-22-guan-yu-blockwo-you-hua-shuo/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/01_pod-best-animals.adapt.1900.1.jpg)" alt="Block那点事儿" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/01_pod-best-animals.adapt.1900.1.jpg)" alt="Block那点事儿" class="thumbnail-image"></span>
     
 </a>
 
@@ -457,7 +456,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/06/08/2017-06-08-qing-liang-ji-shi-tu-kong-zhi-qi/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/pexels-photo-206660.jpeg)" alt="轻量级视图控制器" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/pexels-photo-206660.jpeg)" alt="轻量级视图控制器" class="thumbnail-image"></span>
     
 </a>
 
@@ -476,7 +475,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                             <a href="/2017/06/07/2017-06-07-linuxxia-pei-zhi-tomcatfu-wu-qi/" class="thumbnail">
     
     
-        <span style="background-image:url(http://oo6qj81tq.bkt.clouddn.com/macbook-apple-imac-computer-39284.jpeg)" alt="Linux下配置Tomcat服务器" class="thumbnail-image"></span>
+        <span style="background-image:url(https://gnoduxn-1253865799.cos.ap-beijing.myqcloud.com/macbook-apple-imac-computer-39284.jpeg)" alt="Linux下配置Tomcat服务器" class="thumbnail-image"></span>
     
 </a>
 
